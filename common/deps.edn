@@ -7,5 +7,5 @@
  :jolt/min-version "0.8.0"
  :paths ["src"]
  :deps {net.b12n/raylib {:git/url  "https://github.com/jlt-commons/raylib-jlt.git"
-                         :git/sha  "2f076ef0a9c3997707e80dd935b64dcbbe00cd56"
+                         :git/sha  "46f26bbe46aceea6041c9c6ccd0e4343f47a3815"
                          :deps/root "lib"}}}

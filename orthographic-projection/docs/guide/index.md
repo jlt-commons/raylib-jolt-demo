@@ -4,7 +4,8 @@ perspective vs orthographic (SPACE toggles)
 
 Category: 3d
 
-Ported from raylib's `examples/core/core_3d_camera.c`.
+Ported from raylib's `examples/models/models_orthographic_projection.c`: SPACE
+toggles the same scene between perspective and orthographic projection.
 
 ![orthographic-projection](../demos/orthographic-projection.gif)
 

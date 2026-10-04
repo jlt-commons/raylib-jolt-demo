@@ -4,7 +4,8 @@ an orbiting 3D camera (Camera3D by value)
 
 Category: 3d
 
-Ported from raylib's `examples/core/core_3d_camera.c`.
+Adapted from raylib's `examples/core/core_3d_camera_mode.c`: the same cube on a
+ground grid under a perspective `Camera3D`. The orbiting camera is this port's own.
 
 ![camera-3d](../demos/camera-3d.gif)
 
