@@ -1,5 +1,5 @@
 ;; Run this demo from here with `bb run` or `jolt run`. From the repo root it's
-;; `bb camera-3d-first-person`. Written by `bb resync` when missing; edits survive.
+;; `bb camera-3d-first-person`. The root task comes from `bb gen`.
 {:tasks
  {:requires ([babashka.fs :as fs])
   :init (def jolt-cmd (if (fs/which "jolt") "jolt" "joltc"))

@@ -1,5 +1,5 @@
 ;; Run this demo from here with `bb run` or `jolt run`. From the repo root it's
-;; `bb boids`. Written by `bb resync` when missing; edits survive.
+;; `bb boids`. The root task comes from `bb gen`.
 {:tasks
  {:requires ([babashka.fs :as fs])
   :init (def jolt-cmd (if (fs/which "jolt") "jolt" "joltc"))

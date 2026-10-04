@@ -1,5 +1,4 @@
 {:jolt/min-version "0.8.0"
  :paths ["src"]
- :deps {net.b12n/raylib                  {:local/root "../../raylib-jlt/lib"}
-        net.b12n/raylib-jolt-demo-common {:local/root "../common"}}
+ :deps {net.b12n/raylib-jolt-demo-common {:local/root "../common"}}
  :aliases {:run {:main-opts ["-m" "net.b12n.raylib-jlt.audio-stream-callback"]}}}

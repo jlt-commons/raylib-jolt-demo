@@ -9,5 +9,5 @@
  :description "187 raylib examples in Jolt, one runnable sub-project each, calling libraylib directly over its C ABI."
 
  ;; docs/demos holds a copy of every demo's recording for the gallery. The
- ;; originals sit in each sub-project's docs/demos; `bb resync` writes both.
+ ;; originals sit in each sub-project's docs/demos, so a new recording goes in both.
  :asset-dirs  ["demos"]}

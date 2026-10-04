@@ -1,5 +1,11 @@
 {;; Shared by every demo: the headless smoke harness (net.b12n.raylib-jlt.app)
  ;; and the reasings port the easings demos use. Neither has a -main.
+ ;;
+ ;; This is the one place raylib-jlt is pinned. Every demo depends on common/,
+ ;; so they all get the bindings through here. To move to a newer raylib-jlt,
+ ;; change :git/sha to that commit, then run `bb check`.
  :jolt/min-version "0.8.0"
  :paths ["src"]
- :deps {net.b12n/raylib {:local/root "../../raylib-jlt/lib"}}}
+ :deps {net.b12n/raylib {:git/url  "https://github.com/jlt-commons/raylib-jlt.git"
+                         :git/sha  "2f076ef0a9c3997707e80dd935b64dcbbe00cd56"
+                         :deps/root "lib"}}}

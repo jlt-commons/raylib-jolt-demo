@@ -3,11 +3,8 @@ name: CI
 # ---------------------------------------------------------------------------
 # Runs on pull requests and pushes to main, plus manual dispatch.
 #
-# Every demo depends on ../raylib-jlt/lib, so this checks out both repos side
-# by side inside the workspace (actions/checkout refuses paths outside it):
-#
-#   $GITHUB_WORKSPACE/raylib-jolt-demo   this repo
-#   $GITHUB_WORKSPACE/raylib-jlt         jlt-commons/raylib-jlt at RAYLIB_JLT_REF
+# The raylib bindings arrive as a git dependency, pinned by :git/sha in
+# common/deps.edn, so jolt fetches them itself. No second checkout needed.
 # ---------------------------------------------------------------------------
 
 on:
@@ -30,36 +27,19 @@ env:
   # nobody touched. Bump it in its own commit. A workflow_dispatch run with the
   # jolt-version input tries a candidate without moving the pin.
   JOLT_VERSION: ${{ inputs.jolt-version || '0.8.17' }}
-  # The raylib-jlt commit the demos were last synced from. `bb resync` copies
-  # from a local checkout, so after a resync from a newer raylib-jlt, bump this
-  # to that commit in the same change, or the "in sync" step below goes red.
-  RAYLIB_JLT_REF: 2f076ef0a9c3997707e80dd935b64dcbbe00cd56
 
 jobs:
   check:
-    name: doctor · in sync · compile every demo
+    name: doctor · generated files · compile every demo
     runs-on: ubuntu-latest
-    defaults:
-      run:
-        working-directory: raylib-jolt-demo
 
     steps:
       - uses: actions/checkout@v7.0.1
-        with:
-          path: raylib-jolt-demo
-
-      - name: Check out raylib-jlt (the bindings)
-        uses: actions/checkout@v7.0.1
-        with:
-          repository: jlt-commons/raylib-jlt
-          ref: ${{ env.RAYLIB_JLT_REF }}
-          path: raylib-jlt
 
       # Ubuntu's archive may or may not carry raylib 6, so try the package and
       # fall back to a pinned source build. The -dev package matters: it ships
       # the unversioned libraylib.so that :jolt/native in raylib-jlt/lib looks for.
       - name: Install libraylib
-        working-directory: .
         run: |
           set -euo pipefail
           sudo apt-get update -qq
@@ -90,19 +70,17 @@ jobs:
         with:
           bb: 1.12.196
 
+      # Also fetches the pinned raylib-jlt, so a bad :git/sha fails here.
       - name: Doctor
         run: bb doctor
 
-      # Every generated file (demo sources, docs pages, recordings, demos.edn,
-      # the root deps.edn, check.clj and the per-demo tasks in bb.edn) has to
-      # match what `bb resync` would write from RAYLIB_JLT_REF right now.
-      - name: Demos are in sync with raylib-jlt
+      # The root deps.edn, check.clj, the per-demo tasks in bb.edn and the
+      # gallery are all built from demos.edn. A demo added without `bb gen`, or
+      # a demo directory missing from demos.edn, fails here.
+      - name: Generated files match demos.edn
         run: |
-          set -euo pipefail
-          out="$(bb resync --dry-run ../raylib-jlt)"
-          printf '%s\n' "$out"
-          printf '%s\n' "$out" | tail -1 | grep -q ' 0 file(s) would change ' || {
-            echo "::error title=out of sync::these files differ from what bb resync writes from raylib-jlt@$RAYLIB_JLT_REF. Run bb resync, or bump RAYLIB_JLT_REF."
+          bb gen --check || {
+            echo "::error title=generated files out of date::run bb gen and commit the result"
             exit 1
           }
 

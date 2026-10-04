@@ -1,10 +1,11 @@
 # raylib-jolt-demo
 
-The raylib example suite from
-[raylib-jlt](https://github.com/jlt-commons/raylib-jlt), split so each example
-is its own small jolt project. Every demo talks to raylib through the bindings
-in `../raylib-jlt/lib`, so that checkout has to sit next to this one, and
-raylib 6.0+ has to be installed (`brew install raylib` on macOS).
+187 [raylib](https://github.com/raysan5/raylib) examples written in
+[Jolt](https://github.com/jolt-lang/jolt), each one its own small project.
+They started life in [raylib-jlt](https://github.com/jlt-commons/raylib-jlt),
+which now holds only the bindings. The demos pull those in as a git dependency
+pinned to one commit, so all you install is jolt and raylib 6.0+
+(`brew install raylib` on macOS).
 
 The gallery of every demo is at
 <https://jlt-commons.github.io/raylib-jolt-demo/>.
@@ -14,34 +15,35 @@ The gallery of every demo is at
 ```
 deps.edn                      root: one alias per demo, plus :check
 bb.edn                        root tasks: info, list, run, run-all, check, doctor,
-                              resync, plus one task per demo
-demos.edn                     the demo registry bb.edn reads (generated)
+                              gen, plus one task per demo
+demos.edn                     every demo's name, alias, category and description
 src/net/b12n/raylib_jolt_demo/check.clj
 common/                       shared by every demo
+  deps.edn                    pins raylib-jlt by :git/sha, the only place it's named
   src/net/b12n/raylib_jlt/app.clj        headless smoke harness
   src/net/b12n/raylib_jlt/reasings.clj   easing functions (easings-* demos)
 <demo>/                       187 of these, e.g. asteroids/
-  deps.edn                    depends on ../../raylib-jlt/lib and ../common
+  deps.edn                    depends on ../common
   bb.edn                      a `run` task
   src/net/b12n/raylib_jlt/<demo>.clj
-  docs/guide/index.md         what it shows, how to run it, its ns docstring
+  docs/guide/index.md         what it shows, how to run it, where it was ported from
   docs/demos/<demo>.gif       its recording (.png for the 16 stills)
 docs/                         the site: site.edn, guide/index.md, the generated
                               guide/demos.md gallery, and a second copy of every
                               recording in demos/, since docs-engine only
                               publishes assets from under docs/
-scripts/resync.clj            re-copies all of the above from raylib-jlt
-.github/workflows/            ci.yml (compile + in-sync gate), site.yml (Pages)
+scripts/gen.clj               rebuilds the files that list every demo
+.github/workflows/            ci.yml (doctor, gen --check, compile), site.yml (Pages)
 ```
 
-The namespaces are unchanged from raylib-jlt (`net.b12n.raylib-jlt.asteroids`
-and so on), so a file here and its original diff clean.
+The namespaces kept their raylib-jlt names (`net.b12n.raylib-jlt.asteroids`
+and so on).
 
 ## Running
 
 Every task works under both `bb` and `jolt`, because jolt reads `bb.edn` too.
-Start with `bb doctor` in a fresh checkout. It checks for jolt, the raylib-jlt
-checkout next door and an installed libraylib.
+Start with `bb doctor` in a fresh checkout. It checks for jolt, fetches the
+pinned raylib-jlt, and looks for an installed libraylib.
 
 From inside a demo:
 
@@ -61,49 +63,38 @@ bb run-all 2      # every demo for 2 seconds each, exits 1 if any fail
 bb check          # compile every demo, no window
 ```
 
-The plain aliases work too. Each demo keeps the alias it had in raylib-jlt,
-so it's `jolt -M:asteroids`, and the basic window example (`core/`) is still
+The plain aliases work too. Each demo kept the alias it had in raylib-jlt, so
+it's `jolt -M:asteroids`, and the basic window example (`core/`) is still
 `jolt -M:run`.
 
-The smoke-test variables from raylib-jlt still work.
-`RAYLIB_APP_AUTO_QUIT_MS=1500` closes the window on a timer and
-`RAYLIB_APP_SHOT=shot.png` saves one frame.
+`RAYLIB_APP_AUTO_QUIT_MS=1500` closes a demo's window on a timer and
+`RAYLIB_APP_SHOT=shot.png` saves one frame, which is how `run-all` and CI get
+by with nobody at the keyboard.
 
-## Re-syncing from raylib-jlt
+## Moving to a newer raylib-jlt
 
-Until the migration is finished, raylib-jlt is still where the examples
-change, so pull those changes across with:
+The bindings are pinned in exactly one place, `common/deps.edn`. Every demo
+depends on `common/`, so they all follow it. Change its `:git/sha` to the
+raylib-jlt commit you want, then run `bb check` and `bb run-all 1`.
 
-```sh
-bb resync --dry-run      # list what would change
-bb resync                # default source is ../raylib-jlt
-bb resync ~/elsewhere/raylib-jlt
-```
+## Adding a demo
 
-It overwrites each example's source, `common/`, every
-`<demo>/docs/guide/index.md`, both copies of each recording, and the gallery
-page. A demo's `deps.edn` and `bb.edn`
-are only written when they're missing, so edits to them survive. The root
-`deps.edn`, `check.clj`, `demos.edn` and the per-demo tasks in `bb.edn` (the
-block between its BEGIN and END markers) are rebuilt from the demo
-directories present here. That means a
-demo added by hand keeps its alias even though raylib-jlt has never heard of
-it. The script never deletes anything, so a demo removed upstream has to be
-removed here by hand.
+1. Create `<demo>/src/net/b12n/raylib_jlt/<demo>.clj`, with the namespace
+   `net.b12n.raylib-jlt.<demo>` and a `-main`.
+2. Copy `deps.edn` and `bb.edn` from any existing demo and change the names in
+   them.
+3. Add a line for it to `demos.edn`.
+4. Run `bb gen`. It adds the root alias, the `:check` require, the root task and
+   the gallery entry.
+5. Write its `docs/guide/index.md`, and put its recording in both
+   `<demo>/docs/demos/` and `docs/demos/`.
 
-The general guide pages (structs by value, rlgl, headless smoke testing and
-the rest) aren't about any single demo, so they stay in the
-[raylib-jlt guide](https://github.com/jlt-commons/raylib-jlt/tree/main/docs/guide).
-The per-demo pages link to the ones that discuss them.
-
-CI checks out raylib-jlt at the commit pinned as `RAYLIB_JLT_REF` in
-`.github/workflows/ci.yml` and fails if `bb resync --dry-run` would change
-anything. So after a resync from a newer raylib-jlt, bump that pin to the same
-commit in the same change.
+CI runs `bb gen --check`, which fails when a demo directory and `demos.edn`
+disagree or when step 4 was skipped.
 
 ## CI and the site
 
-`ci.yml` runs `bb doctor`, the in-sync check and `bb check` on every push and
+`ci.yml` runs `bb doctor`, `bb gen --check` and `bb check` on every push and
 pull request. `site.yml` builds the docs with
 [docs-engine](https://github.com/jlt-commons/docs-engine) through the shared
 workflow in jlt-commons/ci-builds, runs `docs/check-site.sh` against the
@@ -115,14 +106,10 @@ docs-engine checkout next to this repo:
 BASE_PATH=/raylib-jolt-demo bash docs/check-site.sh
 ```
 
-## Adding a demo
-
-Create `<demo>/deps.edn`, `<demo>/bb.edn` and
-`<demo>/src/net/b12n/raylib_jlt/<demo>.clj`, copying any existing demo's two
-config files and changing the namespace in `:run`. Then run `bb resync` to add
-its root alias, its `:check` entry and its root task. Write its
-`docs/guide/index.md` by hand, since resync only generates pages for demos
-that come from raylib-jlt.
+The guide pages on how the bindings work (structs by value, rlgl, headless
+smoke testing and the rest) aren't about any single demo, so they live in the
+[raylib-jlt guide](https://jlt-commons.github.io/raylib-jlt/). A demo's page
+links to the ones that discuss it.
 
 ## License
 

@@ -3,7 +3,8 @@ Third-party attribution
 
 This project is licensed under the Eclipse Public License 2.0; see LICENSE.
 Its examples were split out of jlt-commons/raylib-jlt, which carries the
-same licence and the same notices below. EPL 2.0 relicenses nothing that
+same licence and the same notices below, and which it still uses for the
+raylib bindings. EPL 2.0 relicenses nothing that
 arrived under another licence: the whole is EPL 2.0 and each part below
 keeps what it came with, and its notice travels with it here.
 
@@ -69,9 +70,9 @@ raylib
   system-installed libraylib shared library at runtime over its C ABI.
 
   Many demos here are Clojure ports of raylib's own example programs. Each
-  demo's docs/guide/index.md names its upstream source, from the "Ported
-  from" line raylib-jlt's README table supplies and from the example's own
-  ns docstring (e.g. core/core_basic_window, shapes/shapes_bouncing_ball).
+  demo's docs/guide/index.md names its upstream source, in a "Ported from"
+  line taken from raylib-jlt's example table and in the example's own ns
+  docstring (e.g. core/core_basic_window, shapes/shapes_bouncing_ball).
   Those originals are zlib/libpng licensed and the ports remain derived
   works of them. zlib requires that altered source versions be plainly
   marked as such and not misrepresented as the original; those pages are
