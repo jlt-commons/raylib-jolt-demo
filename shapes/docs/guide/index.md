@@ -5,6 +5,8 @@ shape primitives + an rlgl triangle
 
 Category: shapes
 
+Ported from raylib's `examples/shapes/shapes_basic_shapes.c`.
+
 ![shapes](../demos/shapes.gif)
 
 ## Run it

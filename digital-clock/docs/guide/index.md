@@ -5,6 +5,8 @@ a seven-segment HH:MM:SS clock (libc time)
 
 Category: shapes
 
+Ported from raylib's `examples/shapes/shapes_digital_clock.c`.
+
 ![digital-clock](../demos/digital-clock.gif)
 
 ## Run it

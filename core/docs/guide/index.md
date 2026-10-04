@@ -5,6 +5,8 @@ the minimal raylib window + text
 
 Category: core
 
+Ported from raylib's `examples/core/core_basic_window.c`.
+
 ![core](../demos/core.gif)
 
 ## Run it

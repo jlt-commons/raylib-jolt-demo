@@ -1,0 +1,13 @@
+;; Configuration for the documentation site, read by the jlt-commons
+;; docs-engine (https://github.com/jlt-commons/docs-engine). CI builds and
+;; publishes it from .github/workflows/site.yml.
+{;; Served at https://jlt-commons.github.io/raylib-jolt-demo/, so every URL the
+ ;; engine emits needs this prefix. Without it every image 404s.
+ :base-path   "/raylib-jolt-demo"
+
+ :title       "raylib-jolt-demo"
+ :description "187 raylib examples in Jolt, one runnable sub-project each, calling libraylib directly over its C ABI."
+
+ ;; docs/demos holds a copy of every demo's recording for the gallery. The
+ ;; originals sit in each sub-project's docs/demos; `bb resync` writes both.
+ :asset-dirs  ["demos"]}

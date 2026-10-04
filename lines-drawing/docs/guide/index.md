@@ -5,6 +5,8 @@ a rotating fan of thick lines (line-ex!)
 
 Category: shapes
 
+Ported from raylib's `examples/shapes/shapes_lines_drawing.c`.
+
 ![lines-drawing](../demos/lines-drawing.gif)
 
 ## Run it

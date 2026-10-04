@@ -5,6 +5,8 @@ Catmull-Rom / Bezier / B-spline (SPACE cycles)
 
 Category: shapes
 
+Ported from raylib's `examples/shapes/shapes_splines_drawing.c`.
+
 ![splines](../demos/splines.gif)
 
 ## Run it

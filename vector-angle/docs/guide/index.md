@@ -5,6 +5,8 @@ the angle between two vectors (arc + readout)
 
 Category: shapes
 
+Ported from raylib's `examples/shapes/shapes_vector_angle.c`.
+
 ![vector-angle](../demos/vector-angle.gif)
 
 ## Run it

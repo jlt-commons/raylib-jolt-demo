@@ -5,6 +5,8 @@ a rainbow strip via rlgl immediate mode
 
 Category: shapes
 
+Ported from raylib's `examples/shapes/shapes_triangle_strip.c`.
+
 ![triangle-strip](../demos/triangle-strip.gif)
 
 ## Run it

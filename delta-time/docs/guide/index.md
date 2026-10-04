@@ -5,6 +5,8 @@ per-frame vs delta-time movement
 
 Category: core
 
+Ported from raylib's `examples/core/core_delta_time.c`.
+
 ![delta-time](../demos/delta-time.gif)
 
 ## Run it

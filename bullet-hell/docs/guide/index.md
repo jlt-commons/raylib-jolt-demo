@@ -5,6 +5,8 @@ a rotating bullet spiral
 
 Category: shapes
 
+Ported from raylib's `examples/shapes/shapes_bullet_hell.c`.
+
 ![bullet-hell](../demos/bullet-hell.gif)
 
 ## Run it

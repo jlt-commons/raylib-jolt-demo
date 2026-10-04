@@ -5,6 +5,8 @@ drag the corner handle to resize a rect
 
 Category: shapes
 
+Ported from raylib's `examples/shapes/shapes_rectangle_scaling.c`.
+
 ![rectangle-scaling](../demos/rectangle-scaling.gif)
 
 ## Run it

@@ -5,6 +5,8 @@ pac-man, with the classic ghost personalities
 
 Category: games
 
+Ported from [babashka/ffi](https://github.com/babashka/ffi/blob/main/examples/pacman.clj), MIT licensed. See NOTICE.
+
 ![pacman](../demos/pacman.gif)
 
 ## Run it

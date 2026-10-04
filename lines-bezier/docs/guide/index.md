@@ -5,6 +5,8 @@ a cubic Bézier that follows the mouse
 
 Category: shapes
 
+Ported from raylib's `examples/shapes/shapes_lines_bezier.c`.
+
 ![lines-bezier](../demos/lines-bezier.gif)
 
 ## Run it

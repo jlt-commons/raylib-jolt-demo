@@ -5,6 +5,8 @@ a fading trail follows the cursor
 
 Category: shapes
 
+Ported from raylib's `examples/shapes/shapes_mouse_trail.c`.
+
 ![mouse-trail](../demos/mouse-trail.gif)
 
 ## Run it

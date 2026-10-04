@@ -5,6 +5,8 @@ a ball follows the mouse; click to recolor
 
 Category: core
 
+Ported from raylib's `examples/core/core_input_mouse.c`.
+
 ![mouse](../demos/mouse.gif)
 
 ## Run it

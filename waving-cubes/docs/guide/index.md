@@ -5,6 +5,8 @@ an NxN grid of cubes rippling in 3D
 
 Category: 3d
 
+Ported from raylib's `examples/models/models_waving_cubes.c`.
+
 ![waving-cubes](../demos/waving-cubes.gif)
 
 ## Run it

@@ -1,0 +1,123 @@
+name: CI
+
+# ---------------------------------------------------------------------------
+# Runs on pull requests and pushes to main, plus manual dispatch.
+#
+# Every demo depends on ../raylib-jlt/lib, so this checks out both repos side
+# by side inside the workspace (actions/checkout refuses paths outside it):
+#
+#   $GITHUB_WORKSPACE/raylib-jolt-demo   this repo
+#   $GITHUB_WORKSPACE/raylib-jlt         jlt-commons/raylib-jlt at RAYLIB_JLT_REF
+# ---------------------------------------------------------------------------
+
+on:
+  pull_request:
+    branches: [main]
+  push:
+    branches: [main]
+  workflow_dispatch:
+    inputs:
+      jolt-version:
+        description: "jolt version to install (blank = the pinned JOLT_VERSION below)"
+        required: false
+        default: ""
+
+permissions:
+  contents: read
+
+env:
+  # Pinned so a jolt release published overnight can't turn CI red on a tree
+  # nobody touched. Bump it in its own commit. A workflow_dispatch run with the
+  # jolt-version input tries a candidate without moving the pin.
+  JOLT_VERSION: ${{ inputs.jolt-version || '0.8.17' }}
+  # The raylib-jlt commit the demos were last synced from. `bb resync` copies
+  # from a local checkout, so after a resync from a newer raylib-jlt, bump this
+  # to that commit in the same change, or the "in sync" step below goes red.
+  RAYLIB_JLT_REF: 2f076ef0a9c3997707e80dd935b64dcbbe00cd56
+
+jobs:
+  check:
+    name: doctor · in sync · compile every demo
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: raylib-jolt-demo
+
+    steps:
+      - uses: actions/checkout@v7.0.1
+        with:
+          path: raylib-jolt-demo
+
+      - name: Check out raylib-jlt (the bindings)
+        uses: actions/checkout@v7.0.1
+        with:
+          repository: jlt-commons/raylib-jlt
+          ref: ${{ env.RAYLIB_JLT_REF }}
+          path: raylib-jlt
+
+      # Ubuntu's archive may or may not carry raylib 6, so try the package and
+      # fall back to a pinned source build. The -dev package matters: it ships
+      # the unversioned libraylib.so that :jolt/native in raylib-jlt/lib looks for.
+      - name: Install libraylib
+        working-directory: .
+        run: |
+          set -euo pipefail
+          sudo apt-get update -qq
+          if sudo apt-get install -y libraylib-dev; then
+            echo "installed libraylib-dev from apt"
+          else
+            echo "libraylib-dev unavailable, building raylib from source"
+            sudo apt-get install -y --no-install-recommends \
+              build-essential cmake git \
+              libasound2-dev libx11-dev libxrandr-dev libxi-dev \
+              libgl1-mesa-dev libglu1-mesa-dev libxcursor-dev \
+              libxinerama-dev libxkbcommon-dev
+            git clone --depth 1 --branch "$RAYLIB_REF" https://github.com/raysan5/raylib /tmp/raylib
+            cmake -S /tmp/raylib -B /tmp/raylib/build \
+              -DBUILD_SHARED_LIBS=ON -DCMAKE_BUILD_TYPE=Release -DBUILD_EXAMPLES=OFF
+            cmake --build /tmp/raylib/build -j"$(nproc)"
+            sudo cmake --install /tmp/raylib/build
+            sudo ldconfig
+          fi
+        env:
+          RAYLIB_REF: "6.0"
+
+      - uses: jlt-commons/setup-jolt@v1
+        with:
+          version: ${{ env.JOLT_VERSION }}
+
+      - uses: DeLaGuardo/setup-clojure@13.6.1
+        with:
+          bb: 1.12.196
+
+      - name: Doctor
+        run: bb doctor
+
+      # Every generated file (demo sources, docs pages, recordings, demos.edn,
+      # the root deps.edn, check.clj and the per-demo tasks in bb.edn) has to
+      # match what `bb resync` would write from RAYLIB_JLT_REF right now.
+      - name: Demos are in sync with raylib-jlt
+        run: |
+          set -euo pipefail
+          out="$(bb resync --dry-run ../raylib-jlt)"
+          printf '%s\n' "$out"
+          printf '%s\n' "$out" | tail -1 | grep -q ' 0 file(s) would change ' || {
+            echo "::error title=out of sync::these files differ from what bb resync writes from raylib-jlt@$RAYLIB_JLT_REF. Run bb resync, or bump RAYLIB_JLT_REF."
+            exit 1
+          }
+
+      # Compiles every demo namespace with no window. Failure output is echoed
+      # and also re-emitted as an annotation plus a job summary, readable
+      # without downloading the log archive.
+      - name: Compile every demo (headless)
+        run: |
+          set +e
+          out="$(bb check 2>&1)"; rc=$?
+          printf '%s\n' "$out"
+          if [ "$rc" -ne 0 ]; then
+            printf '### `bb check` failed (exit %s)\n\n```\n%s\n```\n' \
+              "$rc" "$(printf '%s\n' "$out" | tail -60)" >> "$GITHUB_STEP_SUMMARY"
+            printf '%s\n' "$out" | tail -c 2000 \
+              | python3 -c 'import sys; print("::error title=bb check failed::" + sys.stdin.read().replace("%","%25").replace("\r","%0D").replace("\n","%0A"))'
+          fi
+          exit "$rc"

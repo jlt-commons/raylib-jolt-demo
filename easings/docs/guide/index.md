@@ -5,6 +5,8 @@ a grid of balls, each on a different easing curve
 
 Category: shapes
 
+Ported from raylib's `examples/shapes/shapes_easings_*` programs.
+
 ![easings](../demos/easings.gif)
 
 ## Run it

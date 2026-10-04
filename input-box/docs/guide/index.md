@@ -5,6 +5,8 @@ type into a text box (GetCharPressed)
 
 Category: text
 
+Ported from raylib's `examples/text/text_input_box.c`.
+
 ![input-box](../demos/input-box.gif)
 
 ## Run it

@@ -5,6 +5,8 @@ a live analog clock (libc local time)
 
 Category: shapes
 
+Ported from raylib's `examples/shapes/shapes_clock_of_clocks.c`.
+
 ![analog-clock](../demos/analog-clock.gif)
 
 ## Run it

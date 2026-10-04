@@ -5,6 +5,8 @@ two eyes track the mouse
 
 Category: shapes
 
+Ported from raylib's `examples/shapes/shapes_following_eyes.c`.
+
 ![eyes](../demos/eyes.gif)
 
 ## Run it

@@ -5,6 +5,8 @@ fixed spokes + a spinning line
 
 Category: shapes
 
+Ported from raylib's `examples/shapes/shapes_math_angle_rotation.c`.
+
 ![math-angle-rotation](../demos/math-angle-rotation.gif)
 
 ## Run it

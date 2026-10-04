@@ -5,6 +5,8 @@ an animated annulus via rl/ring!
 
 Category: shapes
 
+Ported from raylib's `examples/shapes/shapes_ring_drawing.c`.
+
 ![ring-drawing](../demos/ring-drawing.gif)
 
 ## Run it

@@ -6,6 +6,9 @@ is its own small jolt project. Every demo talks to raylib through the bindings
 in `../raylib-jlt/lib`, so that checkout has to sit next to this one, and
 raylib 6.0+ has to be installed (`brew install raylib` on macOS).
 
+The gallery of every demo is at
+<https://jlt-commons.github.io/raylib-jolt-demo/>.
+
 ## Layout
 
 ```
@@ -23,7 +26,12 @@ common/                       shared by every demo
   src/net/b12n/raylib_jlt/<demo>.clj
   docs/guide/index.md         what it shows, how to run it, its ns docstring
   docs/demos/<demo>.gif       its recording (.png for the 16 stills)
+docs/                         the site: site.edn, guide/index.md, the generated
+                              guide/demos.md gallery, and a second copy of every
+                              recording in demos/, since docs-engine only
+                              publishes assets from under docs/
 scripts/resync.clj            re-copies all of the above from raylib-jlt
+.github/workflows/            ci.yml (compile + in-sync gate), site.yml (Pages)
 ```
 
 The namespaces are unchanged from raylib-jlt (`net.b12n.raylib-jlt.asteroids`
@@ -72,8 +80,9 @@ bb resync                # default source is ../raylib-jlt
 bb resync ~/elsewhere/raylib-jlt
 ```
 
-It overwrites each example's source, `common/`, and every
-`<demo>/docs/guide/index.md` and recording. A demo's `deps.edn` and `bb.edn`
+It overwrites each example's source, `common/`, every
+`<demo>/docs/guide/index.md`, both copies of each recording, and the gallery
+page. A demo's `deps.edn` and `bb.edn`
 are only written when they're missing, so edits to them survive. The root
 `deps.edn`, `check.clj`, `demos.edn` and the per-demo tasks in `bb.edn` (the
 block between its BEGIN and END markers) are rebuilt from the demo
@@ -87,6 +96,25 @@ the rest) aren't about any single demo, so they stay in the
 [raylib-jlt guide](https://github.com/jlt-commons/raylib-jlt/tree/main/docs/guide).
 The per-demo pages link to the ones that discuss them.
 
+CI checks out raylib-jlt at the commit pinned as `RAYLIB_JLT_REF` in
+`.github/workflows/ci.yml` and fails if `bb resync --dry-run` would change
+anything. So after a resync from a newer raylib-jlt, bump that pin to the same
+commit in the same change.
+
+## CI and the site
+
+`ci.yml` runs `bb doctor`, the in-sync check and `bb check` on every push and
+pull request. `site.yml` builds the docs with
+[docs-engine](https://github.com/jlt-commons/docs-engine) through the shared
+workflow in jlt-commons/ci-builds, runs `docs/check-site.sh` against the
+result, and deploys to GitHub Pages from main. To build it locally with a
+docs-engine checkout next to this repo:
+
+```sh
+(cd ../docs-engine && jolt run build ../raylib-jolt-demo)
+BASE_PATH=/raylib-jolt-demo bash docs/check-site.sh
+```
+
 ## Adding a demo
 
 Create `<demo>/deps.edn`, `<demo>/bb.edn` and
@@ -95,3 +123,9 @@ config files and changing the namespace in `:run`. Then run `bb resync` to add
 its root alias, its `:check` entry and its root task. Write its
 `docs/guide/index.md` by hand, since resync only generates pages for demos
 that come from raylib-jlt.
+
+## License
+
+EPL 2.0, the same as raylib-jlt. See `LICENSE`. Many demos are ports of
+raylib's examples (zlib) and three of babashka/ffi's (MIT). `NOTICE` carries
+those terms, and each demo's page names what it was ported from.

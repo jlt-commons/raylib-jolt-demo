@@ -5,6 +5,8 @@ a live unit-circle trig visualization
 
 Category: shapes
 
+Ported from raylib's `examples/shapes/shapes_math_sine_cosine.c`.
+
 ![math-sine-cosine](../demos/math-sine-cosine.gif)
 
 ## Run it

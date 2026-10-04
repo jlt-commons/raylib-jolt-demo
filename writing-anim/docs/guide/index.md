@@ -5,6 +5,8 @@ a message types itself out
 
 Category: text
 
+Ported from raylib's `examples/text/text_writing_anim.c`.
+
 ![writing-anim](../demos/writing-anim.gif)
 
 ## Run it

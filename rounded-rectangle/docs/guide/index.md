@@ -5,6 +5,8 @@ rounded rects via sector! corners
 
 Category: shapes
 
+Ported from raylib's `examples/shapes/shapes_rounded_rectangle_drawing.c`.
+
 ![rounded-rectangle](../demos/rounded-rectangle.gif)
 
 ## Run it

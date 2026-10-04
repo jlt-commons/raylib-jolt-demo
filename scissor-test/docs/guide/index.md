@@ -5,6 +5,8 @@ a scissor rectangle clips a grid
 
 Category: core
 
+Ported from raylib's `examples/core/core_scissor_test.c`.
+
 ![scissor-test](../demos/scissor-test.gif)
 
 ## Run it

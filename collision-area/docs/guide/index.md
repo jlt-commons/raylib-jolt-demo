@@ -5,6 +5,8 @@ AABB collision between two boxes
 
 Category: shapes
 
+Ported from raylib's `examples/shapes/shapes_collision_area.c`.
+
 ![collision-area](../demos/collision-area.gif)
 
 ## Run it

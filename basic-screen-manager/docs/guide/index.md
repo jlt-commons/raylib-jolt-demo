@@ -5,6 +5,8 @@ a LOGO/TITLE/GAMEPLAY/ENDING flow
 
 Category: core
 
+Ported from raylib's `examples/core/core_basic_screen_manager.c`.
+
 ![basic-screen-manager](../demos/basic-screen-manager.gif)
 
 ## Run it

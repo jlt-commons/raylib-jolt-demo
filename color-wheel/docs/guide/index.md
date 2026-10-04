@@ -5,6 +5,8 @@ an HSV color wheel (rlgl triangle fan)
 
 Category: shapes
 
+Ported from raylib's `examples/shapes/shapes_rlgl_color_wheel.c`.
+
 ![color-wheel](../demos/color-wheel.gif)
 
 ## Run it

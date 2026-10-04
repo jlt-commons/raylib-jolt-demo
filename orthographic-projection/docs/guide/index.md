@@ -5,6 +5,8 @@ perspective vs orthographic (SPACE toggles)
 
 Category: 3d
 
+Ported from raylib's `examples/core/core_3d_camera.c`.
+
 ![orthographic-projection](../demos/orthographic-projection.gif)
 
 ## Run it

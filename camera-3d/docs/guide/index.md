@@ -5,6 +5,8 @@ an orbiting 3D camera (Camera3D by value)
 
 Category: 3d
 
+Ported from raylib's `examples/core/core_3d_camera.c`.
+
 ![camera-3d](../demos/camera-3d.gif)
 
 ## Run it

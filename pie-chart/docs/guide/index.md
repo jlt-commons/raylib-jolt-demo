@@ -5,6 +5,8 @@ labelled pie slices via rl/sector!
 
 Category: shapes
 
+Ported from raylib's `examples/shapes/shapes_pie_chart.c`.
+
 ![pie-chart](../demos/pie-chart.gif)
 
 ## Run it

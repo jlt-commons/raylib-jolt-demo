@@ -5,6 +5,8 @@ align a word inside a box (MeasureText)
 
 Category: text
 
+Ported from raylib's `examples/text/text_words_alignment.c`.
+
 ![words-alignment](../demos/words-alignment.gif)
 
 ## Run it

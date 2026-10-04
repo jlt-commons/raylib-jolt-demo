@@ -5,6 +5,8 @@ a textured raycaster: one ray per screen column
 
 Category: 3d
 
+Ported from [babashka/ffi](https://github.com/babashka/ffi/blob/main/examples/doom.clj), MIT licensed. See NOTICE.
+
 ![doom](../demos/doom.gif)
 
 ## Run it

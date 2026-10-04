@@ -5,6 +5,8 @@ a P3 Penrose rhombus tiling (deflation)
 
 Category: shapes
 
+Ported from raylib's `examples/shapes/shapes_penrose_tile.c`.
+
 ![penrose-tiling](../demos/penrose-tiling.gif)
 
 ## Run it

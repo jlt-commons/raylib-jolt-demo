@@ -5,6 +5,8 @@ a 2D camera over a skyline (struct-by-value)
 
 Category: core
 
+Ported from raylib's `examples/core/core_2d_camera.c`.
+
 ![camera2d](../demos/camera2d.gif)
 
 ## Run it

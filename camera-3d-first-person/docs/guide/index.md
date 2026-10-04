@@ -5,6 +5,8 @@ walk a yard of columns in first person
 
 Category: 3d
 
+Ported from raylib's `examples/core/core_3d_camera_first_person.c`.
+
 ![camera-3d-first-person](../demos/camera-3d-first-person.gif)
 
 ## Run it

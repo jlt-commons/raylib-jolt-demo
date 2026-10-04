@@ -5,6 +5,8 @@ a dashed line follows the mouse
 
 Category: shapes
 
+Ported from raylib's `examples/shapes/shapes_dashed_line.c`.
+
 ![dashed-line](../demos/dashed-line.gif)
 
 ## Run it

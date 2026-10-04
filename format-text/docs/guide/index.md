@@ -5,6 +5,8 @@ padded score + MM:SS timer readouts
 
 Category: text
 
+Ported from raylib's `examples/text/text_format_text.c`.
+
 ![format-text](../demos/format-text.gif)
 
 ## Run it

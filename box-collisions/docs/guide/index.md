@@ -5,6 +5,8 @@ a player cube colliding with 3D boxes
 
 Category: 3d
 
+Ported from raylib's `examples/models/models_box_collisions.c`.
+
 ![box-collisions](../demos/box-collisions.gif)
 
 ## Run it

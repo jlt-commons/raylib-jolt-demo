@@ -5,6 +5,8 @@ steer a ball with the arrow keys
 
 Category: core
 
+Ported from raylib's `examples/core/core_input_keys.c`.
+
 ![input](../demos/input.gif)
 
 ## Run it

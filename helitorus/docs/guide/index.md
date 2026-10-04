@@ -5,6 +5,8 @@ a helix wound around a torus, swept into a tube
 
 Category: 3d
 
+Ported from [babashka/ffi](https://github.com/babashka/ffi/blob/main/examples/helitorus.clj), MIT licensed. See NOTICE.
+
 ![helitorus](../demos/helitorus.gif)
 
 ## Run it

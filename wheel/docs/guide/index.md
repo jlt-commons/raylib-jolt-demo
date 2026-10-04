@@ -5,6 +5,8 @@ scroll a box with the mouse wheel
 
 Category: core
 
+Ported from raylib's `examples/core/core_input_mouse_wheel.c`.
+
 ![wheel](../demos/wheel.gif)
 
 ## Run it

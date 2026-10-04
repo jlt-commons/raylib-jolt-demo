@@ -5,6 +5,8 @@ a new random value every two seconds
 
 Category: core
 
+Ported from raylib's `examples/core/core_random_values.c`.
+
 ![random-values](../demos/random-values.gif)
 
 ## Run it

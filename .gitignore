@@ -11,3 +11,7 @@ storage.edn
 
 .remember/
 .DS_Store
+
+# docs-engine build output and a local engine checkout
+_site/
+.docs-engine/

@@ -5,6 +5,8 @@ a ball bouncing around the window
 
 Category: shapes
 
+Ported from raylib's `examples/shapes/shapes_bouncing_ball.c`.
+
 ![bounce](../demos/bounce.gif)
 
 ## Run it

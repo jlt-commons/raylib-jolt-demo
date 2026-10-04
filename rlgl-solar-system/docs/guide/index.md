@@ -5,6 +5,8 @@ Sun/Earth/Moon via the rlgl matrix stack
 
 Category: 3d
 
+Ported from raylib's `examples/models/models_rlgl_solar_system.c`.
+
 ![rlgl-solar-system](../demos/rlgl-solar-system.gif)
 
 ## Run it
