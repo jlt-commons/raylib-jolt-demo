@@ -1,0 +1,7 @@
+;; Babashka tasks for raylib-jolt-demo.
+;;
+;;   bb resync [--dry-run] [path]   re-copy the demos from raylib-jlt (default ../raylib-jlt)
+{:paths ["scripts"]
+ :tasks {resync {:doc  "Re-copy the demos from raylib-jlt and regenerate the root deps.edn + check.clj"
+                 :task (apply resync/-main *command-line-args*)
+                 :requires ([resync])}}}

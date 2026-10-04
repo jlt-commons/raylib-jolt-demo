@@ -1,0 +1,5 @@
+{;; Shared by every demo: the headless smoke harness (net.b12n.raylib-jlt.app)
+ ;; and the reasings port the easings demos use. Neither has a -main.
+ :jolt/min-version "0.8.0"
+ :paths ["src"]
+ :deps {net.b12n/raylib {:local/root "../../raylib-jlt/lib"}}}

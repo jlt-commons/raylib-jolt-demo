@@ -1,0 +1,13 @@
+# jolt's classpath cache, created by any `jolt -M:<alias>` run (root or demo)
+.jolt/
+
+# smoke-test screenshots (RAYLIB_APP_SHOT) and mouse-painting's save
+shot*.png
+raylib_shot.png
+my_painting.png
+
+# storage-values writes here, in whatever directory it was run from
+storage.edn
+
+.remember/
+.DS_Store
