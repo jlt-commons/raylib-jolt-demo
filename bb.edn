@@ -9,6 +9,7 @@
 ;;   bb list               flat list of demos with descriptions
 ;;   bb run-all [secs]     every demo for N seconds each (default 2), unattended
 ;;   bb check              compile every demo, no window
+;;   bb lint [--strict]    clj-kondo over every demo and common/ (lint:strict fails on findings)
 ;;   bb doctor             is jolt there, does raylib-jlt resolve, is libraylib installed?
 ;;   bb gen [--check]      rebuild deps.edn, check.clj, these tasks and the gallery
 ;;
@@ -48,6 +49,18 @@
            (System/exit 1))
          (shell {:continue true :extra-env env} jolt-cmd (str "-M:" (:alias d))))))
 
+    ;; Every source root clj-kondo should see: the shared code, the check
+    ;; namespace and each demo listed in demos.edn.
+    (defn lint-dirs []
+      (concat ["common/src" "src"] (map (fn [d] (str (:name d) "/src")) demos)))
+
+    (defn kondo! []
+      (when-not (fs/which "clj-kondo")
+        (binding [*out* *err*]
+          (println "bb lint needs clj-kondo on PATH: https://github.com/clj-kondo/clj-kondo/blob/master/doc/install.md"))
+        (System/exit 1))
+      (apply shell {:continue true} "clj-kondo" "--lint" (lint-dirs)))
+
     (defn exit-with [{:keys [exit]}]
       (when-not (zero? exit) (System/exit exit))))
 
@@ -68,6 +81,7 @@
      (hdr "Verify")
      (row "doctor" "check jolt, the raylib-jlt dependency and libraylib")
      (row "check" "compile every demo, no window")
+     (row "lint" "clj-kondo over every demo (report only); lint:strict fails on findings")
      (hdr "Maintenance")
      (row "gen [--check]" "rebuild deps.edn, check.clj, demo tasks and gallery from demos.edn")
      (doseq [[category ds] (sort-by key (group-by :category demos))]
@@ -105,6 +119,15 @@
   check
   {:doc "Compile every demo, no window"
    :task (exit-with (shell {:continue true} jolt-cmd "-M:check"))}
+
+  lint
+  {:doc "clj-kondo over every demo and common/ (report only)"
+   :task (let [{:keys [exit]} (kondo!)]
+           (println (if (zero? exit) "OK clj-kondo: no errors or warnings" "clj-kondo: see findings above")))}
+
+  lint:strict
+  {:doc "bb lint, but exit non-zero on any warning or error"
+   :task (exit-with (kondo!))}
 
   doctor
   {:doc "Check jolt, the raylib-jlt dependency and libraylib before anything else"

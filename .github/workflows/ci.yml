@@ -30,7 +30,7 @@ env:
 
 jobs:
   check:
-    name: doctor · generated files · compile every demo
+    name: doctor · generated files · lint · compile every demo
     runs-on: ubuntu-latest
 
     steps:
@@ -66,9 +66,12 @@ jobs:
         with:
           version: ${{ env.JOLT_VERSION }}
 
+      # clj-kondo pinned to raylib-jlt's CI version, so the two repos agree on
+      # what a finding is.
       - uses: DeLaGuardo/setup-clojure@13.6.1
         with:
           bb: 1.12.196
+          clj-kondo: "2026.05.25"
 
       # Also fetches the pinned raylib-jlt, so a bad :git/sha fails here.
       - name: Doctor
@@ -83,6 +86,9 @@ jobs:
             echo "::error title=generated files out of date::run bb gen and commit the result"
             exit 1
           }
+
+      - name: clj-kondo
+        run: bb lint:strict
 
       # Compiles every demo namespace with no window. Failure output is echoed
       # and also re-emitted as an annotation plus a job summary, readable

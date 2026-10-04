@@ -15,3 +15,6 @@ storage.edn
 # docs-engine build output and a local engine checkout
 _site/
 .docs-engine/
+
+# clj-kondo analysis cache (the config and hook next to it are tracked)
+.clj-kondo/.cache/

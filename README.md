@@ -14,8 +14,8 @@ The gallery of every demo is at
 
 ```
 deps.edn                      root: one alias per demo, plus :check
-bb.edn                        root tasks: info, list, run, run-all, check, doctor,
-                              gen, plus one task per demo
+bb.edn                        root tasks: info, list, run, run-all, check, lint,
+                              doctor, gen, plus one task per demo
 demos.edn                     every demo's name, alias, category and description
 src/net/b12n/raylib_jolt_demo/check.clj
 common/                       shared by every demo
@@ -33,7 +33,8 @@ docs/                         the site: site.edn, guide/index.md, the generated
                               recording in demos/, since docs-engine only
                               publishes assets from under docs/
 scripts/gen.clj               rebuilds the files that list every demo
-.github/workflows/            ci.yml (doctor, gen --check, compile), site.yml (Pages)
+.clj-kondo/                   lint config, and the hook that reads jolt.ffi/defcfn
+.github/workflows/            ci.yml (doctor, gen --check, lint, compile), site.yml (Pages)
 ```
 
 The namespaces kept their raylib-jlt names (`net.b12n.raylib-jlt.asteroids`
@@ -61,6 +62,7 @@ bb info           # grouped cheat-sheet, every demo included
 bb list           # flat list with descriptions
 bb run-all 2      # every demo for 2 seconds each, exits 1 if any fail
 bb check          # compile every demo, no window
+bb lint           # clj-kondo over every demo (lint:strict fails on findings)
 ```
 
 The plain aliases work too. Each demo kept the alias it had in raylib-jlt, so
@@ -94,8 +96,8 @@ disagree or when step 4 was skipped.
 
 ## CI and the site
 
-`ci.yml` runs `bb doctor`, `bb gen --check` and `bb check` on every push and
-pull request. `site.yml` builds the docs with
+`ci.yml` runs `bb doctor`, `bb gen --check`, `bb lint:strict` and `bb check`
+on every push and pull request. `site.yml` builds the docs with
 [docs-engine](https://github.com/jlt-commons/docs-engine) through the shared
 workflow in jlt-commons/ci-builds, runs `docs/check-site.sh` against the
 result, and deploys to GitHub Pages from main. To build it locally with a
