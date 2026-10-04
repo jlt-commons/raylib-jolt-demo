@@ -10,8 +10,8 @@ Category: shapes
 ## Run it
 
 ```sh
-cd eyes && jolt -M:run   # from this demo
-jolt -M:eyes             # from the repo root
+cd eyes && bb run   # from this demo (or jolt run, jolt -M:run)
+bb eyes             # from the repo root (or jolt -M:eyes)
 ```
 
 ## About

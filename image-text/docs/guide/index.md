@@ -10,8 +10,8 @@ Category: textures
 ## Run it
 
 ```sh
-cd image-text && jolt -M:run   # from this demo
-jolt -M:image-text             # from the repo root
+cd image-text && bb run   # from this demo (or jolt run, jolt -M:run)
+bb image-text             # from the repo root (or jolt -M:image-text)
 ```
 
 ## About

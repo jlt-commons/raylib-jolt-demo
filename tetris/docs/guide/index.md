@@ -10,8 +10,8 @@ Category: games
 ## Run it
 
 ```sh
-cd tetris && jolt -M:run   # from this demo
-jolt -M:tetris             # from the repo root
+cd tetris && bb run   # from this demo (or jolt run, jolt -M:run)
+bb tetris             # from the repo root (or jolt -M:tetris)
 ```
 
 ## About

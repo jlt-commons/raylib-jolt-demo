@@ -10,8 +10,8 @@ Category: games
 ## Run it
 
 ```sh
-cd space-invaders && jolt -M:run   # from this demo
-jolt -M:space-invaders             # from the repo root
+cd space-invaders && bb run   # from this demo (or jolt run, jolt -M:run)
+bb space-invaders             # from the repo root (or jolt -M:space-invaders)
 ```
 
 ## About

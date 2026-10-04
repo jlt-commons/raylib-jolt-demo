@@ -10,8 +10,8 @@ Category: textures
 ## Run it
 
 ```sh
-cd image-processing && jolt -M:run   # from this demo
-jolt -M:image-processing             # from the repo root
+cd image-processing && bb run   # from this demo (or jolt run, jolt -M:run)
+bb image-processing             # from the repo root (or jolt -M:image-processing)
 ```
 
 ## About

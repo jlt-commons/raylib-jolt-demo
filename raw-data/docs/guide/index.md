@@ -10,8 +10,8 @@ Category: textures
 ## Run it
 
 ```sh
-cd raw-data && jolt -M:run   # from this demo
-jolt -M:raw-data             # from the repo root
+cd raw-data && bb run   # from this demo (or jolt run, jolt -M:run)
+bb raw-data             # from the repo root (or jolt -M:raw-data)
 ```
 
 ## About

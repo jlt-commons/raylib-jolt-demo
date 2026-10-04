@@ -10,8 +10,8 @@ Category: textures
 ## Run it
 
 ```sh
-cd sprite-button && jolt -M:run   # from this demo
-jolt -M:sprite-button             # from the repo root
+cd sprite-button && bb run   # from this demo (or jolt run, jolt -M:run)
+bb sprite-button             # from the repo root (or jolt -M:sprite-button)
 ```
 
 ## About

@@ -10,8 +10,8 @@ Category: 3d
 ## Run it
 
 ```sh
-cd tesseract-view && jolt -M:run   # from this demo
-jolt -M:tesseract-view             # from the repo root
+cd tesseract-view && bb run   # from this demo (or jolt run, jolt -M:run)
+bb tesseract-view             # from the repo root (or jolt -M:tesseract-view)
 ```
 
 ## About

@@ -10,8 +10,8 @@ Category: shaders
 ## Run it
 
 ```sh
-cd fog-rendering && jolt -M:run   # from this demo
-jolt -M:fog-rendering             # from the repo root
+cd fog-rendering && bb run   # from this demo (or jolt run, jolt -M:run)
+bb fog-rendering             # from the repo root (or jolt -M:fog-rendering)
 ```
 
 ## About

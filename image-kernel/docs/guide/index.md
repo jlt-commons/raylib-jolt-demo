@@ -10,8 +10,8 @@ Category: textures
 ## Run it
 
 ```sh
-cd image-kernel && jolt -M:run   # from this demo
-jolt -M:image-kernel             # from the repo root
+cd image-kernel && bb run   # from this demo (or jolt run, jolt -M:run)
+bb image-kernel             # from the repo root (or jolt -M:image-kernel)
 ```
 
 ## About

@@ -10,8 +10,8 @@ Category: core
 ## Run it
 
 ```sh
-cd input-actions && jolt -M:run   # from this demo
-jolt -M:input-actions             # from the repo root
+cd input-actions && bb run   # from this demo (or jolt run, jolt -M:run)
+bb input-actions             # from the repo root (or jolt -M:input-actions)
 ```
 
 ## About

@@ -10,8 +10,8 @@ Category: textures
 ## Run it
 
 ```sh
-cd background-scrolling && jolt -M:run   # from this demo
-jolt -M:background-scrolling             # from the repo root
+cd background-scrolling && bb run   # from this demo (or jolt run, jolt -M:run)
+bb background-scrolling             # from the repo root (or jolt -M:background-scrolling)
 ```
 
 ## About

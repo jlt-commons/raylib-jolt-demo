@@ -10,8 +10,8 @@ Category: shapes
 ## Run it
 
 ```sh
-cd outlines-thickness && jolt -M:run   # from this demo
-jolt -M:outlines-thickness             # from the repo root
+cd outlines-thickness && bb run   # from this demo (or jolt run, jolt -M:run)
+bb outlines-thickness             # from the repo root (or jolt -M:outlines-thickness)
 ```
 
 ## About

@@ -10,8 +10,8 @@ Category: core
 ## Run it
 
 ```sh
-cd input-gamepad && jolt -M:run   # from this demo
-jolt -M:input-gamepad             # from the repo root
+cd input-gamepad && bb run   # from this demo (or jolt run, jolt -M:run)
+bb input-gamepad             # from the repo root (or jolt -M:input-gamepad)
 ```
 
 ## About

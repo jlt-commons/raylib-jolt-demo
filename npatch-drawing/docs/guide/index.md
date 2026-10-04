@@ -10,8 +10,8 @@ Category: textures
 ## Run it
 
 ```sh
-cd npatch-drawing && jolt -M:run   # from this demo
-jolt -M:npatch-drawing             # from the repo root
+cd npatch-drawing && bb run   # from this demo (or jolt run, jolt -M:run)
+bb npatch-drawing             # from the repo root (or jolt -M:npatch-drawing)
 ```
 
 ## About

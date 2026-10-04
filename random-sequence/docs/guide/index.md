@@ -10,8 +10,8 @@ Category: core
 ## Run it
 
 ```sh
-cd random-sequence && jolt -M:run   # from this demo
-jolt -M:random-sequence             # from the repo root
+cd random-sequence && bb run   # from this demo (or jolt run, jolt -M:run)
+bb random-sequence             # from the repo root (or jolt -M:random-sequence)
 ```
 
 ## About

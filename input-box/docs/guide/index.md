@@ -10,8 +10,8 @@ Category: text
 ## Run it
 
 ```sh
-cd input-box && jolt -M:run   # from this demo
-jolt -M:input-box             # from the repo root
+cd input-box && bb run   # from this demo (or jolt run, jolt -M:run)
+bb input-box             # from the repo root (or jolt -M:input-box)
 ```
 
 ## About

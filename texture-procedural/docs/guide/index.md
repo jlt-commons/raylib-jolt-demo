@@ -10,8 +10,8 @@ Category: textures
 ## Run it
 
 ```sh
-cd texture-procedural && jolt -M:run   # from this demo
-jolt -M:texture-procedural             # from the repo root
+cd texture-procedural && bb run   # from this demo (or jolt run, jolt -M:run)
+bb texture-procedural             # from the repo root (or jolt -M:texture-procedural)
 ```
 
 ## About

@@ -10,8 +10,8 @@ Category: games
 ## Run it
 
 ```sh
-cd pacman && jolt -M:run   # from this demo
-jolt -M:pacman             # from the repo root
+cd pacman && bb run   # from this demo (or jolt run, jolt -M:run)
+bb pacman             # from the repo root (or jolt -M:pacman)
 ```
 
 ## About

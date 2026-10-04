@@ -10,8 +10,8 @@ Category: shapes
 ## Run it
 
 ```sh
-cd splines && jolt -M:run   # from this demo
-jolt -M:splines             # from the repo root
+cd splines && bb run   # from this demo (or jolt run, jolt -M:run)
+bb splines             # from the repo root (or jolt -M:splines)
 ```
 
 ## About

@@ -10,8 +10,8 @@ Category: 3d
 ## Run it
 
 ```sh
-cd dna-helix && jolt -M:run   # from this demo
-jolt -M:dna-helix             # from the repo root
+cd dna-helix && bb run   # from this demo (or jolt run, jolt -M:run)
+bb dna-helix             # from the repo root (or jolt -M:dna-helix)
 ```
 
 ## About

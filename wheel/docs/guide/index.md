@@ -10,8 +10,8 @@ Category: core
 ## Run it
 
 ```sh
-cd wheel && jolt -M:run   # from this demo
-jolt -M:wheel             # from the repo root
+cd wheel && bb run   # from this demo (or jolt run, jolt -M:run)
+bb wheel             # from the repo root (or jolt -M:wheel)
 ```
 
 ## About

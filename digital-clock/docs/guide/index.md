@@ -10,8 +10,8 @@ Category: shapes
 ## Run it
 
 ```sh
-cd digital-clock && jolt -M:run   # from this demo
-jolt -M:digital-clock             # from the repo root
+cd digital-clock && bb run   # from this demo (or jolt run, jolt -M:run)
+bb digital-clock             # from the repo root (or jolt -M:digital-clock)
 ```
 
 ## About

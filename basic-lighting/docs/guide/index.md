@@ -10,8 +10,8 @@ Category: shaders
 ## Run it
 
 ```sh
-cd basic-lighting && jolt -M:run   # from this demo
-jolt -M:basic-lighting             # from the repo root
+cd basic-lighting && bb run   # from this demo (or jolt run, jolt -M:run)
+bb basic-lighting             # from the repo root (or jolt -M:basic-lighting)
 ```
 
 ## About

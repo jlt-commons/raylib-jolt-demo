@@ -10,8 +10,8 @@ Category: 3d
 ## Run it
 
 ```sh
-cd rlgl-solar-system && jolt -M:run   # from this demo
-jolt -M:rlgl-solar-system             # from the repo root
+cd rlgl-solar-system && bb run   # from this demo (or jolt run, jolt -M:run)
+bb rlgl-solar-system             # from the repo root (or jolt -M:rlgl-solar-system)
 ```
 
 ## About

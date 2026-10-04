@@ -10,8 +10,8 @@ Category: generative
 ## Run it
 
 ```sh
-cd fourier-epicycles && jolt -M:run   # from this demo
-jolt -M:fourier-epicycles             # from the repo root
+cd fourier-epicycles && bb run   # from this demo (or jolt run, jolt -M:run)
+bb fourier-epicycles             # from the repo root (or jolt -M:fourier-epicycles)
 ```
 
 ## About

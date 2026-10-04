@@ -10,8 +10,8 @@ Category: shapes
 ## Run it
 
 ```sh
-cd ball-physics && jolt -M:run   # from this demo
-jolt -M:ball-physics             # from the repo root
+cd ball-physics && bb run   # from this demo (or jolt run, jolt -M:run)
+bb ball-physics             # from the repo root (or jolt -M:ball-physics)
 ```
 
 ## About

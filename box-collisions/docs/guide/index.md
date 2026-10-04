@@ -10,8 +10,8 @@ Category: 3d
 ## Run it
 
 ```sh
-cd box-collisions && jolt -M:run   # from this demo
-jolt -M:box-collisions             # from the repo root
+cd box-collisions && bb run   # from this demo (or jolt run, jolt -M:run)
+bb box-collisions             # from the repo root (or jolt -M:box-collisions)
 ```
 
 ## About

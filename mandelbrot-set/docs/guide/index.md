@@ -10,8 +10,8 @@ Category: shaders
 ## Run it
 
 ```sh
-cd mandelbrot-set && jolt -M:run   # from this demo
-jolt -M:mandelbrot-set             # from the repo root
+cd mandelbrot-set && bb run   # from this demo (or jolt run, jolt -M:run)
+bb mandelbrot-set             # from the repo root (or jolt -M:mandelbrot-set)
 ```
 
 ## About

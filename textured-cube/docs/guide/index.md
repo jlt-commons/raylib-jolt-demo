@@ -10,8 +10,8 @@ Category: 3d
 ## Run it
 
 ```sh
-cd textured-cube && jolt -M:run   # from this demo
-jolt -M:textured-cube             # from the repo root
+cd textured-cube && bb run   # from this demo (or jolt run, jolt -M:run)
+bb textured-cube             # from the repo root (or jolt -M:textured-cube)
 ```
 
 ## About

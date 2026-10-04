@@ -10,8 +10,8 @@ Category: core
 ## Run it
 
 ```sh
-cd directory-files && jolt -M:run   # from this demo
-jolt -M:directory-files             # from the repo root
+cd directory-files && bb run   # from this demo (or jolt run, jolt -M:run)
+bb directory-files             # from the repo root (or jolt -M:directory-files)
 ```
 
 ## About

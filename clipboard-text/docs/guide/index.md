@@ -10,8 +10,8 @@ Category: core
 ## Run it
 
 ```sh
-cd clipboard-text && jolt -M:run   # from this demo
-jolt -M:clipboard-text             # from the repo root
+cd clipboard-text && bb run   # from this demo (or jolt run, jolt -M:run)
+bb clipboard-text             # from the repo root (or jolt -M:clipboard-text)
 ```
 
 ## About

@@ -10,8 +10,8 @@ Category: shapes
 ## Run it
 
 ```sh
-cd dashed-line && jolt -M:run   # from this demo
-jolt -M:dashed-line             # from the repo root
+cd dashed-line && bb run   # from this demo (or jolt run, jolt -M:run)
+bb dashed-line             # from the repo root (or jolt -M:dashed-line)
 ```
 
 ## About

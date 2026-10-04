@@ -10,8 +10,8 @@ Category: games
 ## Run it
 
 ```sh
-cd snake && jolt -M:run   # from this demo
-jolt -M:snake             # from the repo root
+cd snake && bb run   # from this demo (or jolt run, jolt -M:run)
+bb snake             # from the repo root (or jolt -M:snake)
 ```
 
 ## About

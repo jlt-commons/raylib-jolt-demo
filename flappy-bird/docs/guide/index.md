@@ -10,8 +10,8 @@ Category: games
 ## Run it
 
 ```sh
-cd flappy-bird && jolt -M:run   # from this demo
-jolt -M:flappy-bird             # from the repo root
+cd flappy-bird && bb run   # from this demo (or jolt run, jolt -M:run)
+bb flappy-bird             # from the repo root (or jolt -M:flappy-bird)
 ```
 
 ## About

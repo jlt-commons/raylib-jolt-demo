@@ -10,8 +10,8 @@ Category: generative
 ## Run it
 
 ```sh
-cd spirograph && jolt -M:run   # from this demo
-jolt -M:spirograph             # from the repo root
+cd spirograph && bb run   # from this demo (or jolt run, jolt -M:run)
+bb spirograph             # from the repo root (or jolt -M:spirograph)
 ```
 
 ## About

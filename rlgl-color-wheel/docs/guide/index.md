@@ -10,8 +10,8 @@ Category: shapes
 ## Run it
 
 ```sh
-cd rlgl-color-wheel && jolt -M:run   # from this demo
-jolt -M:rlgl-color-wheel             # from the repo root
+cd rlgl-color-wheel && bb run   # from this demo (or jolt run, jolt -M:run)
+bb rlgl-color-wheel             # from the repo root (or jolt -M:rlgl-color-wheel)
 ```
 
 ## About

@@ -10,8 +10,8 @@ Category: textures
 ## Run it
 
 ```sh
-cd bunnymark && jolt -M:run   # from this demo
-jolt -M:bunnymark             # from the repo root
+cd bunnymark && bb run   # from this demo (or jolt run, jolt -M:run)
+bb bunnymark             # from the repo root (or jolt -M:bunnymark)
 ```
 
 ## About

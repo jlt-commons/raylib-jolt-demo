@@ -10,8 +10,8 @@ Category: shapes
 ## Run it
 
 ```sh
-cd lines-drawing && jolt -M:run   # from this demo
-jolt -M:lines-drawing             # from the repo root
+cd lines-drawing && bb run   # from this demo (or jolt run, jolt -M:run)
+bb lines-drawing             # from the repo root (or jolt -M:lines-drawing)
 ```
 
 ## About

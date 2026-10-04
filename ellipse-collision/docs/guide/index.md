@@ -10,8 +10,8 @@ Category: shapes
 ## Run it
 
 ```sh
-cd ellipse-collision && jolt -M:run   # from this demo
-jolt -M:ellipse-collision             # from the repo root
+cd ellipse-collision && bb run   # from this demo (or jolt run, jolt -M:run)
+bb ellipse-collision             # from the repo root (or jolt -M:ellipse-collision)
 ```
 
 ## About

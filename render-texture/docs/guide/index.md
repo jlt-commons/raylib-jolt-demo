@@ -10,8 +10,8 @@ Category: textures
 ## Run it
 
 ```sh
-cd render-texture && jolt -M:run   # from this demo
-jolt -M:render-texture             # from the repo root
+cd render-texture && bb run   # from this demo (or jolt run, jolt -M:run)
+bb render-texture             # from the repo root (or jolt -M:render-texture)
 ```
 
 ## About

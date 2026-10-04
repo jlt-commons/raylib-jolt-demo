@@ -10,8 +10,8 @@ Category: games
 ## Run it
 
 ```sh
-cd pong && jolt -M:run   # from this demo
-jolt -M:pong             # from the repo root
+cd pong && bb run   # from this demo (or jolt run, jolt -M:run)
+bb pong             # from the repo root (or jolt -M:pong)
 ```
 
 ## About

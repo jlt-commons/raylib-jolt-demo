@@ -10,8 +10,8 @@ Category: textures
 ## Run it
 
 ```sh
-cd texture-tiling && jolt -M:run   # from this demo
-jolt -M:texture-tiling             # from the repo root
+cd texture-tiling && bb run   # from this demo (or jolt run, jolt -M:run)
+bb texture-tiling             # from the repo root (or jolt -M:texture-tiling)
 ```
 
 ## About

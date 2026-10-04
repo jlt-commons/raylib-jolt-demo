@@ -10,8 +10,8 @@ Category: 3d
 ## Run it
 
 ```sh
-cd billboard-rendering && jolt -M:run   # from this demo
-jolt -M:billboard-rendering             # from the repo root
+cd billboard-rendering && bb run   # from this demo (or jolt run, jolt -M:run)
+bb billboard-rendering             # from the repo root (or jolt -M:billboard-rendering)
 ```
 
 ## About

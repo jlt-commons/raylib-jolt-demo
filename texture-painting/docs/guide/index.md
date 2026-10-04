@@ -10,8 +10,8 @@ Category: shaders
 ## Run it
 
 ```sh
-cd texture-painting && jolt -M:run   # from this demo
-jolt -M:texture-painting             # from the repo root
+cd texture-painting && bb run   # from this demo (or jolt run, jolt -M:run)
+bb texture-painting             # from the repo root (or jolt -M:texture-painting)
 ```
 
 ## About

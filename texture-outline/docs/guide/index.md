@@ -10,8 +10,8 @@ Category: shaders
 ## Run it
 
 ```sh
-cd texture-outline && jolt -M:run   # from this demo
-jolt -M:texture-outline             # from the repo root
+cd texture-outline && bb run   # from this demo (or jolt run, jolt -M:run)
+bb texture-outline             # from the repo root (or jolt -M:texture-outline)
 ```
 
 ## About

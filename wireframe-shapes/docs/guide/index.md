@@ -10,8 +10,8 @@ Category: 3d
 ## Run it
 
 ```sh
-cd wireframe-shapes && jolt -M:run   # from this demo
-jolt -M:wireframe-shapes             # from the repo root
+cd wireframe-shapes && bb run   # from this demo (or jolt run, jolt -M:run)
+bb wireframe-shapes             # from the repo root (or jolt -M:wireframe-shapes)
 ```
 
 ## About

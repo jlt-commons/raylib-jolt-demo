@@ -10,8 +10,8 @@ Category: core
 ## Run it
 
 ```sh
-cd core && jolt -M:run   # from this demo
-jolt -M:run              # from the repo root
+cd core && bb run   # from this demo (or jolt run, jolt -M:run)
+bb core             # from the repo root (or jolt -M:run)
 ```
 
 ## About

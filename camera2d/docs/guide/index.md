@@ -10,8 +10,8 @@ Category: core
 ## Run it
 
 ```sh
-cd camera2d && jolt -M:run   # from this demo
-jolt -M:camera2d             # from the repo root
+cd camera2d && bb run   # from this demo (or jolt run, jolt -M:run)
+bb camera2d             # from the repo root (or jolt -M:camera2d)
 ```
 
 ## About

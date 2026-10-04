@@ -10,8 +10,8 @@ Category: shaders
 ## Run it
 
 ```sh
-cd custom-uniform && jolt -M:run   # from this demo
-jolt -M:custom-uniform             # from the repo root
+cd custom-uniform && bb run   # from this demo (or jolt run, jolt -M:run)
+bb custom-uniform             # from the repo root (or jolt -M:custom-uniform)
 ```
 
 ## About

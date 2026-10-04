@@ -10,8 +10,8 @@ Category: textures
 ## Run it
 
 ```sh
-cd particles-blending && jolt -M:run   # from this demo
-jolt -M:particles-blending             # from the repo root
+cd particles-blending && bb run   # from this demo (or jolt run, jolt -M:run)
+bb particles-blending             # from the repo root (or jolt -M:particles-blending)
 ```
 
 ## About

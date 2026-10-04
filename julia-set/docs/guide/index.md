@@ -10,8 +10,8 @@ Category: shaders
 ## Run it
 
 ```sh
-cd julia-set && jolt -M:run   # from this demo
-jolt -M:julia-set             # from the repo root
+cd julia-set && bb run   # from this demo (or jolt run, jolt -M:run)
+bb julia-set             # from the repo root (or jolt -M:julia-set)
 ```
 
 ## About

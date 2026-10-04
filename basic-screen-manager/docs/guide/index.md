@@ -10,8 +10,8 @@ Category: core
 ## Run it
 
 ```sh
-cd basic-screen-manager && jolt -M:run   # from this demo
-jolt -M:basic-screen-manager             # from the repo root
+cd basic-screen-manager && bb run   # from this demo (or jolt run, jolt -M:run)
+bb basic-screen-manager             # from the repo root (or jolt -M:basic-screen-manager)
 ```
 
 ## About

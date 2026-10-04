@@ -10,8 +10,8 @@ Category: 3d
 ## Run it
 
 ```sh
-cd yaw-pitch-roll && jolt -M:run   # from this demo
-jolt -M:yaw-pitch-roll             # from the repo root
+cd yaw-pitch-roll && bb run   # from this demo (or jolt run, jolt -M:run)
+bb yaw-pitch-roll             # from the repo root (or jolt -M:yaw-pitch-roll)
 ```
 
 ## About

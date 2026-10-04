@@ -10,8 +10,8 @@ Category: textures
 ## Run it
 
 ```sh
-cd magnifying-glass && jolt -M:run   # from this demo
-jolt -M:magnifying-glass             # from the repo root
+cd magnifying-glass && bb run   # from this demo (or jolt run, jolt -M:run)
+bb magnifying-glass             # from the repo root (or jolt -M:magnifying-glass)
 ```
 
 ## About

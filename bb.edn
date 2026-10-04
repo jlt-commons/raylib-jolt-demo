@@ -1,7 +1,320 @@
-;; Babashka tasks for raylib-jolt-demo.
+;; Task runner for raylib-jolt-demo: 187 raylib examples in jolt, one sub-project each.
 ;;
-;;   bb resync [--dry-run] [path]   re-copy the demos from raylib-jlt (default ../raylib-jlt)
-{:paths ["scripts"]
- :tasks {resync {:doc  "Re-copy the demos from raylib-jlt and regenerate the root deps.edn + check.clj"
-                 :task (apply resync/-main *command-line-args*)
-                 :requires ([resync])}}}
+;; Run these from the repo root with EITHER `bb <task>` or `jolt <task>`. jolt
+;; reads this file as well as deps.edn, so both runners see the same tasks.
+;;
+;;   bb info               grouped cheat-sheet, every demo included
+;;   bb <demo>             run one demo, e.g. bb asteroids
+;;   bb run <demo>         the same, by argument; raylib-jlt's old names work too
+;;   bb list               flat list of demos with descriptions
+;;   bb run-all [secs]     every demo for N seconds each (default 2), unattended
+;;   bb check              compile every demo, no window
+;;   bb doctor             is jolt, raylib-jlt/lib and libraylib where they should be?
+;;   bb resync [--dry-run] re-copy the demos from ../raylib-jlt
+;;
+;; Demos run through the root deps.edn alias, from this directory, exactly as
+;; `jolt -M:<alias>` does. The demo list comes from demos.edn, and the per-demo
+;; tasks at the bottom are written by `bb resync`. Don't edit either by hand.
+;;
+;; NOTE: task bodies are EDN-parsed. No #"regex", no @deref, no #(...).
+{:min-bb-version "1.3.0"
+ :paths ["scripts"]
+ :tasks
+ {:requires ([babashka.fs :as fs]
+             [clojure.edn :as edn]
+             [clojure.string :as str])
+
+  :init
+  (do
+    ;; bb sets babashka.version, jolt sets jolt.version.
+    (def runner (if (System/getProperty "babashka.version") "bb" "jolt"))
+    (def jolt-cmd (if (fs/which "jolt") "jolt" "joltc"))
+
+    ;; [{:name :alias :category :desc :old-name?} ...], written by `bb resync`.
+    ;; Empty until the first resync, which runs through this same :init.
+    (def demos (if (fs/exists? "demos.edn") (edn/read-string (slurp "demos.edn")) []))
+
+    (defn find-demo [s]
+      (first (filter (fn [d] (some (fn [k] (= s (get d k))) [:name :alias :old-name])) demos)))
+
+    (defn run-demo
+      "Run one demo through its root alias. Extra env, e.g. RAYLIB_APP_AUTO_QUIT_MS,
+      goes to the child."
+      ([name] (run-demo name {}))
+      ([name env]
+       (let [d (find-demo name)]
+         (when-not d
+           (binding [*out* *err*]
+             (println (str "No demo named " name ". `" runner " list` shows them all.")))
+           (System/exit 1))
+         (shell {:continue true :extra-env env} jolt-cmd (str "-M:" (:alias d))))))
+
+    (defn exit-with [{:keys [exit]}]
+      (when-not (zero? exit) (System/exit exit))))
+
+  info
+  {:doc "Grouped cheat-sheet, every demo included (start here)"
+   :task
+   (let [esc (str (char 27) "[")
+         col (fn [c s] (str esc c "m" s esc "0m"))
+         hdr (fn [s] (println (str "\n" (col "35" (str "── " s " ──")))))
+         row (fn [t d] (println (str "  " (col "36" (format "%-32s" (str runner " " t))) d)))]
+     (println (col "1;35" "\nraylib-jolt-demo: 187 raylib examples in jolt, one sub-project each"))
+     (println (col "2" (str "  runner: " runner "   ·   both `bb <task>` and `jolt <task>` work")))
+     (hdr "Run")
+     (row "<demo>" "run one demo, e.g. asteroids")
+     (row "run <demo>" "the same, by argument; raylib-jlt's old names work too")
+     (row "list" "flat list of demos with descriptions")
+     (row "run-all [secs]" "every demo for N seconds each (default 2), unattended")
+     (hdr "Verify")
+     (row "doctor" "check jolt, ../raylib-jlt/lib and libraylib")
+     (row "check" "compile every demo, no window")
+     (hdr "Migration")
+     (row "resync [--dry-run] [path]" "re-copy the demos from raylib-jlt (default ../raylib-jlt)")
+     (doseq [[category ds] (sort-by key (group-by :category demos))]
+       (hdr (str (or category "local") " (" (count ds) ")"))
+       (doseq [d ds] (row (:name d) (or (:desc d) ""))))
+     (println (str "\n" (col "2" (str "first run: " runner " doctor, then " runner " asteroids")))))}
+
+  list
+  {:doc "Flat list of demos with descriptions"
+   :task (let [w (apply max (map (fn [d] (count (:name d))) demos))]
+           (doseq [d demos]
+             (println (format (str "%-" w "s  %-10s  %s") (:name d) (or (:category d) "local") (or (:desc d) "")))))}
+
+  run
+  {:doc "Run one demo by name: run <demo>"
+   :override-builtin true
+   :task (if-let [name (first *command-line-args*)]
+           (exit-with (run-demo name))
+           (do (println (str "usage: " runner " run <demo>   (" runner " list shows them)"))
+               (System/exit 1)))}
+
+  run-all
+  {:doc "Every demo for N seconds each (default 2), unattended; exits 1 if any fail"
+   :task (let [secs (Long/parseLong (or (first *command-line-args*) "2"))
+               failed (vec (for [d demos
+                                 :let [_ (println (str "▶ " (:name d)))
+                                       {:keys [exit]} (run-demo (:name d) {"RAYLIB_APP_AUTO_QUIT_MS" (str (* 1000 secs))})]
+                                 :when (not (zero? exit))]
+                             (str (:name d) " (exit " exit ")")))]
+           (println (str "\n" (- (count demos) (count failed)) "/" (count demos) " demos exited cleanly"))
+           (when (seq failed)
+             (println (str "failed: " (str/join ", " failed)))
+             (System/exit 1)))}
+
+  check
+  {:doc "Compile every demo, no window"
+   :task (exit-with (shell {:continue true} jolt-cmd "-M:check"))}
+
+  doctor
+  {:doc "Check jolt, ../raylib-jlt/lib and libraylib before anything else"
+   :task (let [lib-paths (if (str/includes? (str/lower-case (System/getProperty "os.name")) "mac")
+                           ["/opt/homebrew/lib/libraylib.dylib" "/usr/local/lib/libraylib.dylib"]
+                           ["/usr/lib/libraylib.so" "/usr/local/lib/libraylib.so"
+                            "/usr/lib/x86_64-linux-gnu/libraylib.so" "/usr/lib/aarch64-linux-gnu/libraylib.so"])
+               checks [["jolt on PATH" (fs/which jolt-cmd) "install jolt: https://github.com/jolt-lang/jolt"]
+                       ["../raylib-jlt/lib (the bindings)" (fs/exists? "../raylib-jlt/lib/deps.edn")
+                        "clone jlt-commons/raylib-jlt next to this repo"]
+                       ["libraylib" (some fs/exists? lib-paths)
+                        "brew install raylib, or your distro's raylib package (6.0+)"]
+                       ["demos.edn" (fs/exists? "demos.edn") "run `bb resync`"]]]
+           (doseq [[what ok fix] checks]
+             (println (str (if ok "  ok    " "  MISSING ") what (when-not ok (str "  -> " fix)))))
+           (when-not (every? second checks) (System/exit 1)))}
+
+  resync
+  {:doc "Re-copy the demos from raylib-jlt: resync [--dry-run] [path]"
+   :requires ([resync])
+   :task (apply resync/-main *command-line-args*)}
+
+  ;; BEGIN per-demo tasks, generated by `bb resync`
+  amp-envelope            {:doc "▶ ADSR amplitude envelope on a 440Hz tone" :task (exit-with (run-demo "amp-envelope"))}
+  analog-clock            {:doc "▶ a live analog clock (libc local time)" :task (exit-with (run-demo "analog-clock"))}
+  ascii-rendering         {:doc "▶ ascii art from a post-process shader" :task (exit-with (run-demo "ascii-rendering"))}
+  asteroids               {:doc "▶ the classic vector shooter (rotate/thrust/fire)" :task (exit-with (run-demo "asteroids"))}
+  audio-raw-stream        {:doc "▶ arrow keys steer a live sine tone's pitch/pan" :task (exit-with (run-demo "audio-raw-stream"))}
+  audio-stream-callback   {:doc "▶ raudio pulls samples from its own thread" :task (exit-with (run-demo "audio-stream-callback"))}
+  background-scrolling    {:doc "▶ three parallax skyline layers, each scrolling" :task (exit-with (run-demo "background-scrolling"))}
+  ball-physics            {:doc "▶ 2D balls under gravity, SPACE respawns" :task (exit-with (run-demo "ball-physics"))}
+  basic-lighting          {:doc "▶ four point lights, custom vertex shader" :task (exit-with (run-demo "basic-lighting"))}
+  basic-screen-manager    {:doc "▶ a LOGO/TITLE/GAMEPLAY/ENDING flow" :task (exit-with (run-demo "basic-screen-manager"))}
+  basic-voxel             {:doc "▶ an 8x8x8 voxel block, click one out" :task (exit-with (run-demo "basic-voxel"))}
+  billboard-rendering     {:doc "▶ camera-facing quads, one spins" :task (exit-with (run-demo "billboard-rendering"))}
+  blend-modes             {:doc "▶ four 2D blend modes over a night skyline" :task (exit-with (run-demo "blend-modes"))}
+  boids                   {:doc "▶ flocking birds (separation/alignment/cohesion)" :task (exit-with (run-demo "boids"))}
+  bounce                  {:doc "▶ a ball bouncing around the window" :task (exit-with (run-demo "bounce"))}
+  bouncing-spheres        {:doc "▶ spheres bouncing in a 3D box (rl/sphere!)" :task (exit-with (run-demo "bouncing-spheres"))}
+  box-collisions          {:doc "▶ a player cube colliding with 3D boxes" :task (exit-with (run-demo "box-collisions"))}
+  breakout                {:doc "▶ paddle + ball + brick grid (mouse paddle)" :task (exit-with (run-demo "breakout"))}
+  bullet-hell             {:doc "▶ a rotating bullet spiral" :task (exit-with (run-demo "bullet-hell"))}
+  bunnymark               {:doc "▶ the sprite-count benchmark (click to add)" :task (exit-with (run-demo "bunnymark"))}
+  camera-2d-mouse-zoom    {:doc "▶ zoom toward the cursor, pinning the point under it" :task (exit-with (run-demo "camera-2d-mouse-zoom"))}
+  camera-2d-platformer    {:doc "▶ five ways a camera can follow a jumping player" :task (exit-with (run-demo "camera-2d-platformer"))}
+  camera-2d-split-screen  {:doc "▶ two players, two cameras, two render textures" :task (exit-with (run-demo "camera-2d-split-screen"))}
+  camera-3d               {:doc "▶ an orbiting 3D camera (Camera3D by value)" :task (exit-with (run-demo "camera-3d"))}
+  camera-3d-first-person  {:doc "▶ walk a yard of columns in first person" :task (exit-with (run-demo "camera-3d-first-person"))}
+  camera-3d-free          {:doc "▶ a free-look camera around a cube, UpdateCamera" :task (exit-with (run-demo "camera-3d-free"))}
+  camera-3d-split-screen  {:doc "▶ two players, two render-texture halves" :task (exit-with (run-demo "camera-3d-split-screen"))}
+  camera2d                {:doc "▶ a 2D camera over a skyline (struct-by-value)" :task (exit-with (run-demo "camera2d"))}
+  cellular-automata       {:doc "▶ Wolfram's elementary automata" :task (exit-with (run-demo "cellular-automata"))}
+  circle-sector-drawing   {:doc "▶ a sector whose segment count you can starve" :task (exit-with (run-demo "circle-sector-drawing"))}
+  clipboard-text          {:doc "▶ type, C copies, V pastes" :task (exit-with (run-demo "clipboard-text"))}
+  clock-of-clocks         {:doc "▶ six digits spelled by a grid of clock hands" :task (exit-with (run-demo "clock-of-clocks"))}
+  collision-area          {:doc "▶ AABB collision between two boxes" :task (exit-with (run-demo "collision-area"))}
+  color-correction        {:doc "▶ contrast/saturation/brightness shader" :task (exit-with (run-demo "color-correction"))}
+  color-wheel             {:doc "▶ an HSV color wheel (rlgl triangle fan)" :task (exit-with (run-demo "color-wheel"))}
+  colors                  {:doc "▶ every named raylib color in a grid" :task (exit-with (run-demo "colors"))}
+  compute-hash            {:doc "▶ CRC32/MD5/SHA1/SHA256 + Base64 of typed text" :task (exit-with (run-demo "compute-hash"))}
+  core                    {:doc "▶ the minimal raylib window + text" :task (exit-with (run-demo "core"))}
+  custom-logging          {:doc "▶ raylib's log captured by a jolt callback" :task (exit-with (run-demo "custom-logging"))}
+  custom-uniform          {:doc "▶ a mouse-steered swirl over a scene" :task (exit-with (run-demo "custom-uniform"))}
+  dashed-line             {:doc "▶ a dashed line follows the mouse" :task (exit-with (run-demo "dashed-line"))}
+  delta-time              {:doc "▶ per-frame vs delta-time movement" :task (exit-with (run-demo "delta-time"))}
+  digital-clock           {:doc "▶ a seven-segment HH:MM:SS clock (libc time)" :task (exit-with (run-demo "digital-clock"))}
+  directional-billboard   {:doc "▶ a billboard whose facing row turns with the camera" :task (exit-with (run-demo "directional-billboard"))}
+  directory-files         {:doc "▶ a file browser over LoadDirectoryFilesEx" :task (exit-with (run-demo "directory-files"))}
+  dna-helix               {:doc "▶ a turning double helix, coloured bases" :task (exit-with (run-demo "dna-helix"))}
+  doom                    {:doc "▶ a textured raycaster: one ray per screen column" :task (exit-with (run-demo "doom"))}
+  double-pendulum         {:doc "▶ chaotic double-pendulum motion + trail" :task (exit-with (run-demo "double-pendulum"))}
+  drop-files              {:doc "▶ drag files in: FilePathList by value" :task (exit-with (run-demo "drop-files"))}
+  easings                 {:doc "▶ a grid of balls, each on a different easing curve" :task (exit-with (run-demo "easings"))}
+  easings-ball            {:doc "▶ slide, swell and fade, one curve each" :task (exit-with (run-demo "easings-ball"))}
+  easings-box             {:doc "▶ drop, flatten, spin, grow, fade: five curves" :task (exit-with (run-demo "easings-box"))}
+  easings-rectangles      {:doc "▶ a grid easing out in size and rotation at once" :task (exit-with (run-demo "easings-rectangles"))}
+  easings-testbed         {:doc "▶ one curve at a time, plotted and run" :task (exit-with (run-demo "easings-testbed"))}
+  ellipse-collision       {:doc "▶ two ellipses that redden when they overlap" :task (exit-with (run-demo "ellipse-collision"))}
+  eratosthenes-sieve      {:doc "▶ the Sieve of Eratosthenes, one test per pixel" :task (exit-with (run-demo "eratosthenes-sieve"))}
+  eyes                    {:doc "▶ two eyes track the mouse" :task (exit-with (run-demo "eyes"))}
+  fireworks               {:doc "▶ rockets + fading particle bursts" :task (exit-with (run-demo "fireworks"))}
+  first-person-maze       {:doc "▶ walk a grid maze, with a minimap" :task (exit-with (run-demo "first-person-maze"))}
+  flappy-bird             {:doc "▶ flap through the pipe gaps (SPACE)" :task (exit-with (run-demo "flappy-bird"))}
+  flow-field              {:doc "▶ particles steered by a flow field (trails)" :task (exit-with (run-demo "flow-field"))}
+  fog-of-war              {:doc "▶ fog lifted by a 25x15 render texture" :task (exit-with (run-demo "fog-of-war"))}
+  fog-rendering           {:doc "▶ exponential distance fog in the light shader" :task (exit-with (run-demo "fog-rendering"))}
+  format-text             {:doc "▶ padded score + MM:SS timer readouts" :task (exit-with (run-demo "format-text"))}
+  fourier-epicycles       {:doc "▶ rotating circles trace a square wave" :task (exit-with (run-demo "fourier-epicycles"))}
+  framebuffer-rendering   {:doc "▶ two cameras, two framebuffers, one scene" :task (exit-with (run-demo "framebuffer-rendering"))}
+  game-2048               {:doc "▶ 2048: 4x4 tile-merge puzzle (arrow keys)" :task (exit-with (run-demo "game-2048"))}
+  game-of-life            {:doc "▶ Conway's Game of Life (SPACE reseeds)" :task (exit-with (run-demo "game-of-life"))}
+  geometric-shapes        {:doc "▶ cubes, spheres, cylinders, cones, capsules" :task (exit-with (run-demo "geometric-shapes"))}
+  gradient                {:doc "▶ a vertical two-color gradient" :task (exit-with (run-demo "gradient"))}
+  helitorus               {:doc "▶ a helix wound around a torus, swept into a tube" :task (exit-with (run-demo "helitorus"))}
+  highdpi-demo            {:doc "▶ logical points vs physical pixels, two rulers" :task (exit-with (run-demo "highdpi-demo"))}
+  highdpi-testbed         {:doc "▶ diagnostic overlay: monitors, DPI, crosshair" :task (exit-with (run-demo "highdpi-testbed"))}
+  hilbert-curve           {:doc "▶ a rainbow Hilbert space-filling curve" :task (exit-with (run-demo "hilbert-curve"))}
+  image-channel           {:doc "▶ R/G/B/A split; alpha masked to show structure" :task (exit-with (run-demo "image-channel"))}
+  image-drawing           {:doc "▶ shapes baked once, then drawn live each frame" :task (exit-with (run-demo "image-drawing"))}
+  image-generation        {:doc "▶ nine procedural textures, none of them loaded" :task (exit-with (run-demo "image-generation"))}
+  image-kernel            {:doc "▶ sharpen, sobel and gaussian, one call each" :task (exit-with (run-demo "image-kernel"))}
+  image-processing        {:doc "▶ nine CPU-side image operations, picked live" :task (exit-with (run-demo "image-processing"))}
+  image-rotate            {:doc "▶ 0/90/180/270 exact, one angle grows the buffer" :task (exit-with (run-demo "image-rotate"))}
+  image-text              {:doc "▶ text baked into the image, pixelates at 4x" :task (exit-with (run-demo "image-text"))}
+  inline-styling          {:doc "▶ colour markup inside the string itself" :task (exit-with (run-demo "inline-styling"))}
+  input                   {:doc "▶ steer a ball with the arrow keys" :task (exit-with (run-demo "input"))}
+  input-actions           {:doc "▶ abstract input actions: keyboard + gamepad" :task (exit-with (run-demo "input-actions"))}
+  input-box               {:doc "▶ type into a text box (GetCharPressed)" :task (exit-with (run-demo "input-box"))}
+  input-gamepad           {:doc "▶ sticks, triggers and buttons for pad 0" :task (exit-with (run-demo "input-gamepad"))}
+  input-gestures          {:doc "▶ tap, hold, drag and swipe, named as they happen" :task (exit-with (run-demo "input-gestures"))}
+  input-multitouch        {:doc "▶ touch points (the mouse is point 0)" :task (exit-with (run-demo "input-multitouch"))}
+  input-virtual-controls  {:doc "▶ an on-screen D-pad and action button" :task (exit-with (run-demo "input-virtual-controls"))}
+  julia-set               {:doc "▶ the Julia set, mouse-steered, in a shader" :task (exit-with (run-demo "julia-set"))}
+  kaleidoscope            {:doc "▶ strokes mirrored with 6-fold symmetry" :task (exit-with (run-demo "kaleidoscope"))}
+  keyboard-testbed        {:doc "▶ an on-screen ENG-US keyboard, every key lit" :task (exit-with (run-demo "keyboard-testbed"))}
+  l-system                {:doc "▶ an L-system fractal plant (grows + regrows)" :task (exit-with (run-demo "l-system"))}
+  lines-bezier            {:doc "▶ a cubic Bézier that follows the mouse" :task (exit-with (run-demo "lines-bezier"))}
+  lines-drawing           {:doc "▶ a rotating fan of thick lines (line-ex!)" :task (exit-with (run-demo "lines-drawing"))}
+  logo                    {:doc "▶ the raylib logo from rectangles + text" :task (exit-with (run-demo "logo"))}
+  logo-anim               {:doc "▶ the raylib logo assembling itself, unsmoothed" :task (exit-with (run-demo "logo-anim"))}
+  lorenz-attractor        {:doc "▶ the Lorenz attractor traced in 3D" :task (exit-with (run-demo "lorenz-attractor"))}
+  magnifying-glass        {:doc "▶ a round lens that reveals hidden markers" :task (exit-with (run-demo "magnifying-glass"))}
+  mandelbrot-set          {:doc "▶ the Mandelbrot set, zoomable, in a shader" :task (exit-with (run-demo "mandelbrot-set"))}
+  math-angle-rotation     {:doc "▶ fixed spokes + a spinning line" :task (exit-with (run-demo "math-angle-rotation"))}
+  math-sine-cosine        {:doc "▶ a live unit-circle trig visualization" :task (exit-with (run-demo "math-sine-cosine"))}
+  mesh-generation         {:doc "▶ eight GenMesh shapes, drawn with DrawMesh" :task (exit-with (run-demo "mesh-generation"))}
+  mesh-instancing         {:doc "▶ 10000 lit cubes in one draw call" :task (exit-with (run-demo "mesh-instancing"))}
+  minesweeper             {:doc "▶ reveal/flag grid (mouse L reveal, R flag)" :task (exit-with (run-demo "minesweeper"))}
+  monitor-detector        {:doc "▶ every attached display, current one lit" :task (exit-with (run-demo "monitor-detector"))}
+  mouse                   {:doc "▶ a ball follows the mouse; click to recolor" :task (exit-with (run-demo "mouse"))}
+  mouse-painting          {:doc "▶ a paint program on a render-texture canvas" :task (exit-with (run-demo "mouse-painting"))}
+  mouse-trail             {:doc "▶ a fading trail follows the cursor" :task (exit-with (run-demo "mouse-trail"))}
+  multi-sampler           {:doc "▶ two textures blended by a second sampler" :task (exit-with (run-demo "multi-sampler"))}
+  npatch-drawing          {:doc "▶ nine-patch stretching, corners held fixed" :task (exit-with (run-demo "npatch-drawing"))}
+  orthographic-projection {:doc "▶ perspective vs orthographic (SPACE toggles)" :task (exit-with (run-demo "orthographic-projection"))}
+  outlines-thickness      {:doc "▶ thick outlines, and what a negative one does" :task (exit-with (run-demo "outlines-thickness"))}
+  pacman                  {:doc "▶ pac-man, with the classic ghost personalities" :task (exit-with (run-demo "pacman"))}
+  palette-switch          {:doc "▶ bands recolored by an ivec3 palette" :task (exit-with (run-demo "palette-switch"))}
+  particles               {:doc "▶ water/smoke/fire particles follow the mouse" :task (exit-with (run-demo "particles"))}
+  particles-blending      {:doc "▶ 200 sparks trail the mouse, alpha vs additive" :task (exit-with (run-demo "particles-blending"))}
+  penrose-tiling          {:doc "▶ a P3 Penrose rhombus tiling (deflation)" :task (exit-with (run-demo "penrose-tiling"))}
+  picking-3d              {:doc "▶ click a box: a real GetScreenToWorldRay pick" :task (exit-with (run-demo "picking-3d"))}
+  pie-chart               {:doc "▶ labelled pie slices via rl/sector!" :task (exit-with (run-demo "pie-chart"))}
+  point-cloud             {:doc "▶ ~1500 points as tiny rlgl cubes, rotating" :task (exit-with (run-demo "point-cloud"))}
+  polygon-drawing         {:doc "▶ hue-wheel texture on a spinning polygon" :task (exit-with (run-demo "polygon-drawing"))}
+  pong                    {:doc "▶ two-paddle classic, you (W/S) vs a CPU" :task (exit-with (run-demo "pong"))}
+  postprocessing          {:doc "▶ post-process shaders cycled over a scene" :task (exit-with (run-demo "postprocessing"))}
+  random-sequence         {:doc "▶ bars in a shuffled order, each height used once" :task (exit-with (run-demo "random-sequence"))}
+  random-values           {:doc "▶ a new random value every two seconds" :task (exit-with (run-demo "random-values"))}
+  raw-data                {:doc "▶ textures built from a hand-filled byte buffer" :task (exit-with (run-demo "raw-data"))}
+  raymarching             {:doc "▶ a raymarched SDF scene in a shader" :task (exit-with (run-demo "raymarching"))}
+  rectangle-advanced      {:doc "▶ per-side roundness with a horizontal gradient" :task (exit-with (run-demo "rectangle-advanced"))}
+  rectangle-bounds        {:doc "▶ draggable word-wrap text container" :task (exit-with (run-demo "rectangle-bounds"))}
+  rectangle-scaling       {:doc "▶ drag the corner handle to resize a rect" :task (exit-with (run-demo "rectangle-scaling"))}
+  recursive-tree          {:doc "▶ a binary fractal tree" :task (exit-with (run-demo "recursive-tree"))}
+  render-texture          {:doc "▶ a scene drawn off-screen, then reused" :task (exit-with (run-demo "render-texture"))}
+  ring-drawing            {:doc "▶ an animated annulus via rl/ring!" :task (exit-with (run-demo "ring-drawing"))}
+  rlgl-color-wheel        {:doc "▶ a hue wheel as a triangle fan, per-vertex colour" :task (exit-with (run-demo "rlgl-color-wheel"))}
+  rlgl-solar-system       {:doc "▶ Sun/Earth/Moon via the rlgl matrix stack" :task (exit-with (run-demo "rlgl-solar-system"))}
+  rlgl-triangle           {:doc "▶ a Gouraud triangle with draggable corners" :task (exit-with (run-demo "rlgl-triangle"))}
+  rotating-cube           {:doc "▶ a single cube spinning via the rlgl matrix stack" :task (exit-with (run-demo "rotating-cube"))}
+  rounded-rect-shader     {:doc "▶ SDF rounded rects: fill, border, shadow" :task (exit-with (run-demo "rounded-rect-shader"))}
+  rounded-rectangle       {:doc "▶ rounded rects via sector! corners" :task (exit-with (run-demo "rounded-rectangle"))}
+  scissor-test            {:doc "▶ a scissor rectangle clips a grid" :task (exit-with (run-demo "scissor-test"))}
+  screen-buffer           {:doc "▶ the classic DOS fire effect" :task (exit-with (run-demo "screen-buffer"))}
+  shader-hot-reload       {:doc "▶ swap and recompile the GLSL at runtime" :task (exit-with (run-demo "shader-hot-reload"))}
+  shapes                  {:doc "▶ shape primitives + an rlgl triangle" :task (exit-with (run-demo "shapes"))}
+  smooth-pixelperfect     {:doc "▶ sub-pixel camera smoothing at 5x upscale" :task (exit-with (run-demo "smooth-pixelperfect"))}
+  snake                   {:doc "▶ the classic snake (arrow keys, grow, don't crash)" :task (exit-with (run-demo "snake"))}
+  space-invaders          {:doc "▶ marching aliens (arrows + SPACE to shoot)" :task (exit-with (run-demo "space-invaders"))}
+  spinning-cubes          {:doc "▶ a row of cubes each spinning with a phase offset" :task (exit-with (run-demo "spinning-cubes"))}
+  spirograph              {:doc "▶ animated hypotrochoid roulette curves" :task (exit-with (run-demo "spirograph"))}
+  splines                 {:doc "▶ Catmull-Rom / Bezier / B-spline (SPACE cycles)" :task (exit-with (run-demo "splines"))}
+  sprite-animation        {:doc "▶ six generated poses, one source rectangle" :task (exit-with (run-demo "sprite-animation"))}
+  sprite-button           {:doc "▶ one sheet, three states, sliced by v" :task (exit-with (run-demo "sprite-button"))}
+  sprite-stacking         {:doc "▶ 40 generated slices faking a 3D car" :task (exit-with (run-demo "sprite-stacking"))}
+  srcrec-dstrec           {:doc "▶ srcrec picks the frame, dstrec scales+spins it" :task (exit-with (run-demo "srcrec-dstrec"))}
+  starfield-effect        {:doc "▶ flying starfield (wheel=speed, SPACE=mode)" :task (exit-with (run-demo "starfield-effect"))}
+  stars                   {:doc "▶ a twinkling starfield" :task (exit-with (run-demo "stars"))}
+  storage-values          {:doc "▶ values that survive a restart, via a file" :task (exit-with (run-demo "storage-values"))}
+  strings-management      {:doc "▶ bouncing text you slice, shatter and glue" :task (exit-with (run-demo "strings-management"))}
+  tesseract-view          {:doc "▶ a rotating 4D hypercube projected to 2D" :task (exit-with (run-demo "tesseract-view"))}
+  tetris                  {:doc "▶ the block-stacking puzzle (move/rotate/drop)" :task (exit-with (run-demo "tetris"))}
+  text                    {:doc "▶ font sizes + MeasureText centering" :task (exit-with (run-demo "text"))}
+  texture-outline         {:doc "▶ a shader outline around a sprite's alpha edge" :task (exit-with (run-demo "texture-outline"))}
+  texture-painting        {:doc "▶ a blank texture painted by a shader" :task (exit-with (run-demo "texture-painting"))}
+  texture-procedural      {:doc "▶ four textures built pixel by pixel" :task (exit-with (run-demo "texture-procedural"))}
+  texture-rendering       {:doc "▶ a grid of squares painted entirely by a shader" :task (exit-with (run-demo "texture-rendering"))}
+  texture-tiling          {:doc "▶ one tile repeated across the window" :task (exit-with (run-demo "texture-tiling"))}
+  texture-waves           {:doc "▶ a starfield rippled by a UV-displacement shader" :task (exit-with (run-demo "texture-waves"))}
+  textured-cube           {:doc "▶ two cubes, one textured atlas, one sub-rect" :task (exit-with (run-demo "textured-cube"))}
+  textured-curve          {:doc "▶ a texture laid along a cubic Bezier" :task (exit-with (run-demo "textured-curve"))}
+  to-image                {:doc "▶ one image, VRAM to RAM to VRAM and back up" :task (exit-with (run-demo "to-image"))}
+  top-down-lights         {:doc "▶ lights and shadow volumes in an alpha mask" :task (exit-with (run-demo "top-down-lights"))}
+  triangle-strip          {:doc "▶ a rainbow strip via rlgl immediate mode" :task (exit-with (run-demo "triangle-strip"))}
+  undo-redo               {:doc "▶ move a square, then step back through the history" :task (exit-with (run-demo "undo-redo"))}
+  vampire-survivors       {:doc "▶ auto-fire survival: move, waves chase you" :task (exit-with (run-demo "vampire-survivors"))}
+  vector-angle            {:doc "▶ the angle between two vectors (arc + readout)" :task (exit-with (run-demo "vector-angle"))}
+  vertex-displacement     {:doc "▶ a flat plane made terrain in the vertex stage" :task (exit-with (run-demo "vertex-displacement"))}
+  viewport-scaling        {:doc "▶ 6 viewport-scaling policies, resize live" :task (exit-with (run-demo "viewport-scaling"))}
+  waving-cubes            {:doc "▶ an NxN grid of cubes rippling in 3D" :task (exit-with (run-demo "waving-cubes"))}
+  wheel                   {:doc "▶ scroll a box with the mouse wheel" :task (exit-with (run-demo "wheel"))}
+  window-flags            {:doc "▶ toggle vsync/resizable/topmost live" :task (exit-with (run-demo "window-flags"))}
+  window-letterbox        {:doc "▶ a fixed picture letterboxed into the window" :task (exit-with (run-demo "window-letterbox"))}
+  window-should-close     {:doc "▶ close is a question: ESC asks before it exits" :task (exit-with (run-demo "window-should-close"))}
+  wireframe-shapes        {:doc "▶ pyramid/octahedron/torus/helix in 3D lines" :task (exit-with (run-demo "wireframe-shapes"))}
+  words-alignment         {:doc "▶ align a word inside a box (MeasureText)" :task (exit-with (run-demo "words-alignment"))}
+  world-screen            {:doc "▶ a 2D label tracks a cube via GetWorldToScreen" :task (exit-with (run-demo "world-screen"))}
+  writing-anim            {:doc "▶ a message types itself out" :task (exit-with (run-demo "writing-anim"))}
+  yaw-pitch-roll          {:doc "▶ the three aircraft rotations in 3D" :task (exit-with (run-demo "yaw-pitch-roll"))}
+  ;; END per-demo tasks
+  }}

@@ -10,8 +10,8 @@ Category: text
 ## Run it
 
 ```sh
-cd format-text && jolt -M:run   # from this demo
-jolt -M:format-text             # from the repo root
+cd format-text && bb run   # from this demo (or jolt run, jolt -M:run)
+bb format-text             # from the repo root (or jolt -M:format-text)
 ```
 
 ## About

@@ -10,8 +10,8 @@ Category: shaders
 ## Run it
 
 ```sh
-cd texture-waves && jolt -M:run   # from this demo
-jolt -M:texture-waves             # from the repo root
+cd texture-waves && bb run   # from this demo (or jolt run, jolt -M:run)
+bb texture-waves             # from the repo root (or jolt -M:texture-waves)
 ```
 
 ## About

@@ -10,8 +10,8 @@ Category: 3d
 ## Run it
 
 ```sh
-cd bouncing-spheres && jolt -M:run   # from this demo
-jolt -M:bouncing-spheres             # from the repo root
+cd bouncing-spheres && bb run   # from this demo (or jolt run, jolt -M:run)
+bb bouncing-spheres             # from the repo root (or jolt -M:bouncing-spheres)
 ```
 
 ## About

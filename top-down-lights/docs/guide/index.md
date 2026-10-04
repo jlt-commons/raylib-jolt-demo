@@ -10,8 +10,8 @@ Category: shapes
 ## Run it
 
 ```sh
-cd top-down-lights && jolt -M:run   # from this demo
-jolt -M:top-down-lights             # from the repo root
+cd top-down-lights && bb run   # from this demo (or jolt run, jolt -M:run)
+bb top-down-lights             # from the repo root (or jolt -M:top-down-lights)
 ```
 
 ## About

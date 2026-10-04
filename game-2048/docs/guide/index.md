@@ -10,8 +10,8 @@ Category: games
 ## Run it
 
 ```sh
-cd game-2048 && jolt -M:run   # from this demo
-jolt -M:game-2048             # from the repo root
+cd game-2048 && bb run   # from this demo (or jolt run, jolt -M:run)
+bb game-2048             # from the repo root (or jolt -M:game-2048)
 ```
 
 ## About

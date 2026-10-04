@@ -10,8 +10,8 @@ Category: core
 ## Run it
 
 ```sh
-cd drop-files && jolt -M:run   # from this demo
-jolt -M:drop-files             # from the repo root
+cd drop-files && bb run   # from this demo (or jolt run, jolt -M:run)
+bb drop-files             # from the repo root (or jolt -M:drop-files)
 ```
 
 ## About

@@ -10,8 +10,8 @@ Category: shaders
 ## Run it
 
 ```sh
-cd vertex-displacement && jolt -M:run   # from this demo
-jolt -M:vertex-displacement             # from the repo root
+cd vertex-displacement && bb run   # from this demo (or jolt run, jolt -M:run)
+bb vertex-displacement             # from the repo root (or jolt -M:vertex-displacement)
 ```
 
 ## About

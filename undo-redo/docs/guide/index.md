@@ -10,8 +10,8 @@ Category: core
 ## Run it
 
 ```sh
-cd undo-redo && jolt -M:run   # from this demo
-jolt -M:undo-redo             # from the repo root
+cd undo-redo && bb run   # from this demo (or jolt run, jolt -M:run)
+bb undo-redo             # from the repo root (or jolt -M:undo-redo)
 ```
 
 ## About

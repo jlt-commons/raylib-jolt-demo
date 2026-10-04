@@ -10,8 +10,8 @@ Category: core
 ## Run it
 
 ```sh
-cd window-flags && jolt -M:run   # from this demo
-jolt -M:window-flags             # from the repo root
+cd window-flags && bb run   # from this demo (or jolt run, jolt -M:run)
+bb window-flags             # from the repo root (or jolt -M:window-flags)
 ```
 
 ## About

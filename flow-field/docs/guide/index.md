@@ -10,8 +10,8 @@ Category: generative
 ## Run it
 
 ```sh
-cd flow-field && jolt -M:run   # from this demo
-jolt -M:flow-field             # from the repo root
+cd flow-field && bb run   # from this demo (or jolt run, jolt -M:run)
+bb flow-field             # from the repo root (or jolt -M:flow-field)
 ```
 
 ## About

@@ -10,8 +10,8 @@ Category: generative
 ## Run it
 
 ```sh
-cd l-system && jolt -M:run   # from this demo
-jolt -M:l-system             # from the repo root
+cd l-system && bb run   # from this demo (or jolt run, jolt -M:run)
+bb l-system             # from the repo root (or jolt -M:l-system)
 ```
 
 ## About

@@ -10,8 +10,8 @@ Category: shapes
 ## Run it
 
 ```sh
-cd mouse-trail && jolt -M:run   # from this demo
-jolt -M:mouse-trail             # from the repo root
+cd mouse-trail && bb run   # from this demo (or jolt run, jolt -M:run)
+bb mouse-trail             # from the repo root (or jolt -M:mouse-trail)
 ```
 
 ## About

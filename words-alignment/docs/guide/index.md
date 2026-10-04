@@ -10,8 +10,8 @@ Category: text
 ## Run it
 
 ```sh
-cd words-alignment && jolt -M:run   # from this demo
-jolt -M:words-alignment             # from the repo root
+cd words-alignment && bb run   # from this demo (or jolt run, jolt -M:run)
+bb words-alignment             # from the repo root (or jolt -M:words-alignment)
 ```
 
 ## About

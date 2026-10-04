@@ -1,0 +1,9 @@
+;; Run this demo from here with `bb run` or `jolt run`. From the repo root it's
+;; `bb splines`. Written by `bb resync` when missing; edits survive.
+{:tasks
+ {:requires ([babashka.fs :as fs])
+  :init (def jolt-cmd (if (fs/which "jolt") "jolt" "joltc"))
+  run {:doc "▶ Catmull-Rom / Bezier / B-spline (SPACE cycles)"
+       :override-builtin true
+       :task (let [{:keys [exit]} (shell {:continue true} jolt-cmd "-M:run")]
+               (when-not (zero? exit) (System/exit exit)))}}}

@@ -10,8 +10,8 @@ Category: textures
 ## Run it
 
 ```sh
-cd image-channel && jolt -M:run   # from this demo
-jolt -M:image-channel             # from the repo root
+cd image-channel && bb run   # from this demo (or jolt run, jolt -M:run)
+bb image-channel             # from the repo root (or jolt -M:image-channel)
 ```
 
 ## About

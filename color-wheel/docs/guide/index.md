@@ -10,8 +10,8 @@ Category: shapes
 ## Run it
 
 ```sh
-cd color-wheel && jolt -M:run   # from this demo
-jolt -M:color-wheel             # from the repo root
+cd color-wheel && bb run   # from this demo (or jolt run, jolt -M:run)
+bb color-wheel             # from the repo root (or jolt -M:color-wheel)
 ```
 
 ## About

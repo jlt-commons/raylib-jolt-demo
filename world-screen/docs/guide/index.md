@@ -10,8 +10,8 @@ Category: 3d
 ## Run it
 
 ```sh
-cd world-screen && jolt -M:run   # from this demo
-jolt -M:world-screen             # from the repo root
+cd world-screen && bb run   # from this demo (or jolt run, jolt -M:run)
+bb world-screen             # from the repo root (or jolt -M:world-screen)
 ```
 
 ## About

@@ -10,8 +10,8 @@ Category: games
 ## Run it
 
 ```sh
-cd minesweeper && jolt -M:run   # from this demo
-jolt -M:minesweeper             # from the repo root
+cd minesweeper && bb run   # from this demo (or jolt run, jolt -M:run)
+bb minesweeper             # from the repo root (or jolt -M:minesweeper)
 ```
 
 ## About

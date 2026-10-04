@@ -10,8 +10,8 @@ Category: core
 ## Run it
 
 ```sh
-cd mouse && jolt -M:run   # from this demo
-jolt -M:mouse             # from the repo root
+cd mouse && bb run   # from this demo (or jolt run, jolt -M:run)
+bb mouse             # from the repo root (or jolt -M:mouse)
 ```
 
 ## About

@@ -10,8 +10,8 @@ Category: 3d
 ## Run it
 
 ```sh
-cd basic-voxel && jolt -M:run   # from this demo
-jolt -M:basic-voxel             # from the repo root
+cd basic-voxel && bb run   # from this demo (or jolt run, jolt -M:run)
+bb basic-voxel             # from the repo root (or jolt -M:basic-voxel)
 ```
 
 ## About

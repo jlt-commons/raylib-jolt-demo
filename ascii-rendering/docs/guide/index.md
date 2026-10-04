@@ -10,8 +10,8 @@ Category: shaders
 ## Run it
 
 ```sh
-cd ascii-rendering && jolt -M:run   # from this demo
-jolt -M:ascii-rendering             # from the repo root
+cd ascii-rendering && bb run   # from this demo (or jolt run, jolt -M:run)
+bb ascii-rendering             # from the repo root (or jolt -M:ascii-rendering)
 ```
 
 ## About

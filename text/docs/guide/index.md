@@ -10,8 +10,8 @@ Category: text
 ## Run it
 
 ```sh
-cd text && jolt -M:run   # from this demo
-jolt -M:text             # from the repo root
+cd text && bb run   # from this demo (or jolt run, jolt -M:run)
+bb text             # from the repo root (or jolt -M:text)
 ```
 
 ## About

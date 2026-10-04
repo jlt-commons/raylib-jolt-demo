@@ -10,8 +10,8 @@ Category: shapes
 ## Run it
 
 ```sh
-cd double-pendulum && jolt -M:run   # from this demo
-jolt -M:double-pendulum             # from the repo root
+cd double-pendulum && bb run   # from this demo (or jolt run, jolt -M:run)
+bb double-pendulum             # from the repo root (or jolt -M:double-pendulum)
 ```
 
 ## About

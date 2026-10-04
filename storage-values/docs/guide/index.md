@@ -10,8 +10,8 @@ Category: core
 ## Run it
 
 ```sh
-cd storage-values && jolt -M:run   # from this demo
-jolt -M:storage-values             # from the repo root
+cd storage-values && bb run   # from this demo (or jolt run, jolt -M:run)
+bb storage-values             # from the repo root (or jolt -M:storage-values)
 ```
 
 ## About

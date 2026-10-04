@@ -10,8 +10,8 @@ Category: textures
 ## Run it
 
 ```sh
-cd framebuffer-rendering && jolt -M:run   # from this demo
-jolt -M:framebuffer-rendering             # from the repo root
+cd framebuffer-rendering && bb run   # from this demo (or jolt run, jolt -M:run)
+bb framebuffer-rendering             # from the repo root (or jolt -M:framebuffer-rendering)
 ```
 
 ## About

@@ -10,8 +10,8 @@ Category: shaders
 ## Run it
 
 ```sh
-cd rounded-rect-shader && jolt -M:run   # from this demo
-jolt -M:rounded-rect-shader             # from the repo root
+cd rounded-rect-shader && bb run   # from this demo (or jolt run, jolt -M:run)
+bb rounded-rect-shader             # from the repo root (or jolt -M:rounded-rect-shader)
 ```
 
 ## About

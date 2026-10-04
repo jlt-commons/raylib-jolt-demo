@@ -10,8 +10,8 @@ Category: 3d
 ## Run it
 
 ```sh
-cd spinning-cubes && jolt -M:run   # from this demo
-jolt -M:spinning-cubes             # from the repo root
+cd spinning-cubes && bb run   # from this demo (or jolt run, jolt -M:run)
+bb spinning-cubes             # from the repo root (or jolt -M:spinning-cubes)
 ```
 
 ## About

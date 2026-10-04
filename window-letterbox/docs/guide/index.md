@@ -10,8 +10,8 @@ Category: core
 ## Run it
 
 ```sh
-cd window-letterbox && jolt -M:run   # from this demo
-jolt -M:window-letterbox             # from the repo root
+cd window-letterbox && bb run   # from this demo (or jolt run, jolt -M:run)
+bb window-letterbox             # from the repo root (or jolt -M:window-letterbox)
 ```
 
 ## About

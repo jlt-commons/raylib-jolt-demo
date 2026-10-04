@@ -10,8 +10,8 @@ Category: shaders
 ## Run it
 
 ```sh
-cd shader-hot-reload && jolt -M:run   # from this demo
-jolt -M:shader-hot-reload             # from the repo root
+cd shader-hot-reload && bb run   # from this demo (or jolt run, jolt -M:run)
+bb shader-hot-reload             # from the repo root (or jolt -M:shader-hot-reload)
 ```
 
 ## About

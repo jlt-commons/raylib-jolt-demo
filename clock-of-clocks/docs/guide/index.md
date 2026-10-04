@@ -10,8 +10,8 @@ Category: generative
 ## Run it
 
 ```sh
-cd clock-of-clocks && jolt -M:run   # from this demo
-jolt -M:clock-of-clocks             # from the repo root
+cd clock-of-clocks && bb run   # from this demo (or jolt run, jolt -M:run)
+bb clock-of-clocks             # from the repo root (or jolt -M:clock-of-clocks)
 ```
 
 ## About

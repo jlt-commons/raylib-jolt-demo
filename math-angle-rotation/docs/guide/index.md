@@ -10,8 +10,8 @@ Category: shapes
 ## Run it
 
 ```sh
-cd math-angle-rotation && jolt -M:run   # from this demo
-jolt -M:math-angle-rotation             # from the repo root
+cd math-angle-rotation && bb run   # from this demo (or jolt run, jolt -M:run)
+bb math-angle-rotation             # from the repo root (or jolt -M:math-angle-rotation)
 ```
 
 ## About

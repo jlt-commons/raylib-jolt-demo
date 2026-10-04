@@ -10,8 +10,8 @@ Category: 3d
 ## Run it
 
 ```sh
-cd waving-cubes && jolt -M:run   # from this demo
-jolt -M:waving-cubes             # from the repo root
+cd waving-cubes && bb run   # from this demo (or jolt run, jolt -M:run)
+bb waving-cubes             # from the repo root (or jolt -M:waving-cubes)
 ```
 
 ## About

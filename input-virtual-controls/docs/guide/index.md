@@ -10,8 +10,8 @@ Category: core
 ## Run it
 
 ```sh
-cd input-virtual-controls && jolt -M:run   # from this demo
-jolt -M:input-virtual-controls             # from the repo root
+cd input-virtual-controls && bb run   # from this demo (or jolt run, jolt -M:run)
+bb input-virtual-controls             # from the repo root (or jolt -M:input-virtual-controls)
 ```
 
 ## About

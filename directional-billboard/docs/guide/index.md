@@ -10,8 +10,8 @@ Category: 3d
 ## Run it
 
 ```sh
-cd directional-billboard && jolt -M:run   # from this demo
-jolt -M:directional-billboard             # from the repo root
+cd directional-billboard && bb run   # from this demo (or jolt run, jolt -M:run)
+bb directional-billboard             # from the repo root (or jolt -M:directional-billboard)
 ```
 
 ## About

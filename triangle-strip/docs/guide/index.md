@@ -10,8 +10,8 @@ Category: shapes
 ## Run it
 
 ```sh
-cd triangle-strip && jolt -M:run   # from this demo
-jolt -M:triangle-strip             # from the repo root
+cd triangle-strip && bb run   # from this demo (or jolt run, jolt -M:run)
+bb triangle-strip             # from the repo root (or jolt -M:triangle-strip)
 ```
 
 ## About

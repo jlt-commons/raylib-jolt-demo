@@ -10,8 +10,8 @@ Category: shapes
 ## Run it
 
 ```sh
-cd rlgl-triangle && jolt -M:run   # from this demo
-jolt -M:rlgl-triangle             # from the repo root
+cd rlgl-triangle && bb run   # from this demo (or jolt run, jolt -M:run)
+bb rlgl-triangle             # from the repo root (or jolt -M:rlgl-triangle)
 ```
 
 ## About

@@ -10,8 +10,8 @@ Category: 3d
 ## Run it
 
 ```sh
-cd orthographic-projection && jolt -M:run   # from this demo
-jolt -M:orthographic-projection             # from the repo root
+cd orthographic-projection && bb run   # from this demo (or jolt run, jolt -M:run)
+bb orthographic-projection             # from the repo root (or jolt -M:orthographic-projection)
 ```
 
 ## About

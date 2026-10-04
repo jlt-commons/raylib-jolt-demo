@@ -10,8 +10,8 @@ Category: core
 ## Run it
 
 ```sh
-cd window-should-close && jolt -M:run   # from this demo
-jolt -M:window-should-close             # from the repo root
+cd window-should-close && bb run   # from this demo (or jolt run, jolt -M:run)
+bb window-should-close             # from the repo root (or jolt -M:window-should-close)
 ```
 
 ## About

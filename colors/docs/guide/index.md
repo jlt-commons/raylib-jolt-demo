@@ -10,8 +10,8 @@ Category: shapes
 ## Run it
 
 ```sh
-cd colors && jolt -M:run   # from this demo
-jolt -M:colors             # from the repo root
+cd colors && bb run   # from this demo (or jolt run, jolt -M:run)
+bb colors             # from the repo root (or jolt -M:colors)
 ```
 
 ## About

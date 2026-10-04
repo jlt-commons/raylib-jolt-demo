@@ -10,8 +10,8 @@ Category: shapes
 ## Run it
 
 ```sh
-cd gradient && jolt -M:run   # from this demo
-jolt -M:gradient             # from the repo root
+cd gradient && bb run   # from this demo (or jolt run, jolt -M:run)
+bb gradient             # from the repo root (or jolt -M:gradient)
 ```
 
 ## About

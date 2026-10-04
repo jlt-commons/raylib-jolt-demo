@@ -10,8 +10,8 @@ Category: shaders
 ## Run it
 
 ```sh
-cd color-correction && jolt -M:run   # from this demo
-jolt -M:color-correction             # from the repo root
+cd color-correction && bb run   # from this demo (or jolt run, jolt -M:run)
+bb color-correction             # from the repo root (or jolt -M:color-correction)
 ```
 
 ## About

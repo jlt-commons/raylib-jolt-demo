@@ -10,8 +10,8 @@ Category: shaders
 ## Run it
 
 ```sh
-cd postprocessing && jolt -M:run   # from this demo
-jolt -M:postprocessing             # from the repo root
+cd postprocessing && bb run   # from this demo (or jolt run, jolt -M:run)
+bb postprocessing             # from the repo root (or jolt -M:postprocessing)
 ```
 
 ## About

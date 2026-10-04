@@ -10,8 +10,8 @@ Category: core
 ## Run it
 
 ```sh
-cd viewport-scaling && jolt -M:run   # from this demo
-jolt -M:viewport-scaling             # from the repo root
+cd viewport-scaling && bb run   # from this demo (or jolt run, jolt -M:run)
+bb viewport-scaling             # from the repo root (or jolt -M:viewport-scaling)
 ```
 
 ## About

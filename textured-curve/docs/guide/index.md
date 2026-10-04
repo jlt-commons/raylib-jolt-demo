@@ -10,8 +10,8 @@ Category: textures
 ## Run it
 
 ```sh
-cd textured-curve && jolt -M:run   # from this demo
-jolt -M:textured-curve             # from the repo root
+cd textured-curve && bb run   # from this demo (or jolt run, jolt -M:run)
+bb textured-curve             # from the repo root (or jolt -M:textured-curve)
 ```
 
 ## About

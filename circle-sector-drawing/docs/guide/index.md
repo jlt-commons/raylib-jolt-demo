@@ -10,8 +10,8 @@ Category: shapes
 ## Run it
 
 ```sh
-cd circle-sector-drawing && jolt -M:run   # from this demo
-jolt -M:circle-sector-drawing             # from the repo root
+cd circle-sector-drawing && bb run   # from this demo (or jolt run, jolt -M:run)
+bb circle-sector-drawing             # from the repo root (or jolt -M:circle-sector-drawing)
 ```
 
 ## About

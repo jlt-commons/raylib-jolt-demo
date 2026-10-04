@@ -10,8 +10,8 @@ Category: core
 ## Run it
 
 ```sh
-cd camera-2d-platformer && jolt -M:run   # from this demo
-jolt -M:camera-2d-platformer             # from the repo root
+cd camera-2d-platformer && bb run   # from this demo (or jolt run, jolt -M:run)
+bb camera-2d-platformer             # from the repo root (or jolt -M:camera-2d-platformer)
 ```
 
 ## About

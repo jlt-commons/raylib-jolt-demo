@@ -10,8 +10,8 @@ Category: textures
 ## Run it
 
 ```sh
-cd polygon-drawing && jolt -M:run   # from this demo
-jolt -M:polygon-drawing             # from the repo root
+cd polygon-drawing && bb run   # from this demo (or jolt run, jolt -M:run)
+bb polygon-drawing             # from the repo root (or jolt -M:polygon-drawing)
 ```
 
 ## About

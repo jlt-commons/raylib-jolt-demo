@@ -10,8 +10,8 @@ Category: shapes
 ## Run it
 
 ```sh
-cd rounded-rectangle && jolt -M:run   # from this demo
-jolt -M:rounded-rectangle             # from the repo root
+cd rounded-rectangle && bb run   # from this demo (or jolt run, jolt -M:run)
+bb rounded-rectangle             # from the repo root (or jolt -M:rounded-rectangle)
 ```
 
 ## About

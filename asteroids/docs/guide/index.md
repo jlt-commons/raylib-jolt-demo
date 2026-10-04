@@ -10,8 +10,8 @@ Category: games
 ## Run it
 
 ```sh
-cd asteroids && jolt -M:run   # from this demo
-jolt -M:asteroids             # from the repo root
+cd asteroids && bb run   # from this demo (or jolt run, jolt -M:run)
+bb asteroids             # from the repo root (or jolt -M:asteroids)
 ```
 
 ## About

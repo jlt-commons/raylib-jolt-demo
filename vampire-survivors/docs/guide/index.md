@@ -10,8 +10,8 @@ Category: games
 ## Run it
 
 ```sh
-cd vampire-survivors && jolt -M:run   # from this demo
-jolt -M:vampire-survivors             # from the repo root
+cd vampire-survivors && bb run   # from this demo (or jolt run, jolt -M:run)
+bb vampire-survivors             # from the repo root (or jolt -M:vampire-survivors)
 ```
 
 ## About

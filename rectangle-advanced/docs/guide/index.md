@@ -10,8 +10,8 @@ Category: shapes
 ## Run it
 
 ```sh
-cd rectangle-advanced && jolt -M:run   # from this demo
-jolt -M:rectangle-advanced             # from the repo root
+cd rectangle-advanced && bb run   # from this demo (or jolt run, jolt -M:run)
+bb rectangle-advanced             # from the repo root (or jolt -M:rectangle-advanced)
 ```
 
 ## About

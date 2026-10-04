@@ -10,8 +10,8 @@ Category: 3d
 ## Run it
 
 ```sh
-cd lorenz-attractor && jolt -M:run   # from this demo
-jolt -M:lorenz-attractor             # from the repo root
+cd lorenz-attractor && bb run   # from this demo (or jolt run, jolt -M:run)
+bb lorenz-attractor             # from the repo root (or jolt -M:lorenz-attractor)
 ```
 
 ## About

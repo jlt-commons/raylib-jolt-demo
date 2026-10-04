@@ -10,12 +10,16 @@ raylib 6.0+ has to be installed (`brew install raylib` on macOS).
 
 ```
 deps.edn                      root: one alias per demo, plus :check
+bb.edn                        root tasks: info, list, run, run-all, check, doctor,
+                              resync, plus one task per demo
+demos.edn                     the demo registry bb.edn reads (generated)
 src/net/b12n/raylib_jolt_demo/check.clj
 common/                       shared by every demo
   src/net/b12n/raylib_jlt/app.clj        headless smoke harness
   src/net/b12n/raylib_jlt/reasings.clj   easing functions (easings-* demos)
 <demo>/                       187 of these, e.g. asteroids/
   deps.edn                    depends on ../../raylib-jlt/lib and ../common
+  bb.edn                      a `run` task
   src/net/b12n/raylib_jlt/<demo>.clj
   docs/guide/index.md         what it shows, how to run it, its ns docstring
   docs/demos/<demo>.gif       its recording (.png for the 16 stills)
@@ -27,21 +31,31 @@ and so on), so a file here and its original diff clean.
 
 ## Running
 
+Every task works under both `bb` and `jolt`, because jolt reads `bb.edn` too.
+Start with `bb doctor` in a fresh checkout. It checks for jolt, the raylib-jlt
+checkout next door and an installed libraylib.
+
 From inside a demo:
 
 ```sh
 cd asteroids
-jolt -M:run
+bb run            # or: jolt run, jolt -M:run
 ```
 
-From the root, each demo runs under the alias it had in raylib-jlt. The basic
-window example (`core/`) is still `:run`.
+From the root, every demo has a task of its own:
 
 ```sh
-jolt -M:asteroids
-jolt -M:run
-jolt -M:check     # compile every demo, no window
+bb asteroids      # or: jolt asteroids
+bb run asteroids  # the same, and raylib-jlt's old names work: bb run bouncing-ball
+bb info           # grouped cheat-sheet, every demo included
+bb list           # flat list with descriptions
+bb run-all 2      # every demo for 2 seconds each, exits 1 if any fail
+bb check          # compile every demo, no window
 ```
+
+The plain aliases work too. Each demo keeps the alias it had in raylib-jlt,
+so it's `jolt -M:asteroids`, and the basic window example (`core/`) is still
+`jolt -M:run`.
 
 The smoke-test variables from raylib-jlt still work.
 `RAYLIB_APP_AUTO_QUIT_MS=1500` closes the window on a timer and
@@ -59,9 +73,11 @@ bb resync ~/elsewhere/raylib-jlt
 ```
 
 It overwrites each example's source, `common/`, and every
-`<demo>/docs/guide/index.md` and recording. A demo's `deps.edn` is only
-written when it's missing, so edits to it survive. The root `deps.edn` and
-`check.clj` are rebuilt from the demo directories present here. That means a
+`<demo>/docs/guide/index.md` and recording. A demo's `deps.edn` and `bb.edn`
+are only written when they're missing, so edits to them survive. The root
+`deps.edn`, `check.clj`, `demos.edn` and the per-demo tasks in `bb.edn` (the
+block between its BEGIN and END markers) are rebuilt from the demo
+directories present here. That means a
 demo added by hand keeps its alias even though raylib-jlt has never heard of
 it. The script never deletes anything, so a demo removed upstream has to be
 removed here by hand.
@@ -73,8 +89,9 @@ The per-demo pages link to the ones that discuss them.
 
 ## Adding a demo
 
-Create `<demo>/deps.edn` and `<demo>/src/net/b12n/raylib_jlt/<demo>.clj`,
-copying any existing demo's `deps.edn` and changing the namespace in `:run`.
-Then run `bb resync` to add its root alias and its `:check` entry. Write its
+Create `<demo>/deps.edn`, `<demo>/bb.edn` and
+`<demo>/src/net/b12n/raylib_jlt/<demo>.clj`, copying any existing demo's two
+config files and changing the namespace in `:run`. Then run `bb resync` to add
+its root alias, its `:check` entry and its root task. Write its
 `docs/guide/index.md` by hand, since resync only generates pages for demos
 that come from raylib-jlt.

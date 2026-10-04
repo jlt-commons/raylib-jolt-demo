@@ -10,8 +10,8 @@ Category: textures
 ## Run it
 
 ```sh
-cd image-drawing && jolt -M:run   # from this demo
-jolt -M:image-drawing             # from the repo root
+cd image-drawing && bb run   # from this demo (or jolt run, jolt -M:run)
+bb image-drawing             # from the repo root (or jolt -M:image-drawing)
 ```
 
 ## About

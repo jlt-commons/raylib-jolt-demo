@@ -10,8 +10,8 @@ Category: text
 ## Run it
 
 ```sh
-cd strings-management && jolt -M:run   # from this demo
-jolt -M:strings-management             # from the repo root
+cd strings-management && bb run   # from this demo (or jolt run, jolt -M:run)
+bb strings-management             # from the repo root (or jolt -M:strings-management)
 ```
 
 ## About

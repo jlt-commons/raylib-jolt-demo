@@ -10,8 +10,8 @@ Category: 3d
 ## Run it
 
 ```sh
-cd doom && jolt -M:run   # from this demo
-jolt -M:doom             # from the repo root
+cd doom && bb run   # from this demo (or jolt run, jolt -M:run)
+bb doom             # from the repo root (or jolt -M:doom)
 ```
 
 ## About

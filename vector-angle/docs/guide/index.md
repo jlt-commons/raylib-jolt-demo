@@ -10,8 +10,8 @@ Category: shapes
 ## Run it
 
 ```sh
-cd vector-angle && jolt -M:run   # from this demo
-jolt -M:vector-angle             # from the repo root
+cd vector-angle && bb run   # from this demo (or jolt run, jolt -M:run)
+bb vector-angle             # from the repo root (or jolt -M:vector-angle)
 ```
 
 ## About

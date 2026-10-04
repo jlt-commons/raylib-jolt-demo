@@ -10,8 +10,8 @@ Category: generative
 ## Run it
 
 ```sh
-cd fireworks && jolt -M:run   # from this demo
-jolt -M:fireworks             # from the repo root
+cd fireworks && bb run   # from this demo (or jolt run, jolt -M:run)
+bb fireworks             # from the repo root (or jolt -M:fireworks)
 ```
 
 ## About

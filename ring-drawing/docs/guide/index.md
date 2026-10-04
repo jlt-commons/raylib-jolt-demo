@@ -10,8 +10,8 @@ Category: shapes
 ## Run it
 
 ```sh
-cd ring-drawing && jolt -M:run   # from this demo
-jolt -M:ring-drawing             # from the repo root
+cd ring-drawing && bb run   # from this demo (or jolt run, jolt -M:run)
+bb ring-drawing             # from the repo root (or jolt -M:ring-drawing)
 ```
 
 ## About

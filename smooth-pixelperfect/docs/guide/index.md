@@ -10,8 +10,8 @@ Category: core
 ## Run it
 
 ```sh
-cd smooth-pixelperfect && jolt -M:run   # from this demo
-jolt -M:smooth-pixelperfect             # from the repo root
+cd smooth-pixelperfect && bb run   # from this demo (or jolt run, jolt -M:run)
+bb smooth-pixelperfect             # from the repo root (or jolt -M:smooth-pixelperfect)
 ```
 
 ## About

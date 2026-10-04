@@ -10,8 +10,8 @@ Category: text
 ## Run it
 
 ```sh
-cd inline-styling && jolt -M:run   # from this demo
-jolt -M:inline-styling             # from the repo root
+cd inline-styling && bb run   # from this demo (or jolt run, jolt -M:run)
+bb inline-styling             # from the repo root (or jolt -M:inline-styling)
 ```
 
 ## About

@@ -10,8 +10,8 @@ Category: generative
 ## Run it
 
 ```sh
-cd game-of-life && jolt -M:run   # from this demo
-jolt -M:game-of-life             # from the repo root
+cd game-of-life && bb run   # from this demo (or jolt run, jolt -M:run)
+bb game-of-life             # from the repo root (or jolt -M:game-of-life)
 ```
 
 ## About

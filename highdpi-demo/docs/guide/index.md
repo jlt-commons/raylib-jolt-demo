@@ -10,8 +10,8 @@ Category: core
 ## Run it
 
 ```sh
-cd highdpi-demo && jolt -M:run   # from this demo
-jolt -M:highdpi-demo             # from the repo root
+cd highdpi-demo && bb run   # from this demo (or jolt run, jolt -M:run)
+bb highdpi-demo             # from the repo root (or jolt -M:highdpi-demo)
 ```
 
 ## About

@@ -10,8 +10,8 @@ Category: shaders
 ## Run it
 
 ```sh
-cd eratosthenes-sieve && jolt -M:run   # from this demo
-jolt -M:eratosthenes-sieve             # from the repo root
+cd eratosthenes-sieve && bb run   # from this demo (or jolt run, jolt -M:run)
+bb eratosthenes-sieve             # from the repo root (or jolt -M:eratosthenes-sieve)
 ```
 
 ## About

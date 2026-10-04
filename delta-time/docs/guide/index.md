@@ -10,8 +10,8 @@ Category: core
 ## Run it
 
 ```sh
-cd delta-time && jolt -M:run   # from this demo
-jolt -M:delta-time             # from the repo root
+cd delta-time && bb run   # from this demo (or jolt run, jolt -M:run)
+bb delta-time             # from the repo root (or jolt -M:delta-time)
 ```
 
 ## About

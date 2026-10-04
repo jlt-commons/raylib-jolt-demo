@@ -10,8 +10,8 @@ Category: shapes
 ## Run it
 
 ```sh
-cd math-sine-cosine && jolt -M:run   # from this demo
-jolt -M:math-sine-cosine             # from the repo root
+cd math-sine-cosine && bb run   # from this demo (or jolt run, jolt -M:run)
+bb math-sine-cosine             # from the repo root (or jolt -M:math-sine-cosine)
 ```
 
 ## About

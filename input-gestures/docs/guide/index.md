@@ -10,8 +10,8 @@ Category: core
 ## Run it
 
 ```sh
-cd input-gestures && jolt -M:run   # from this demo
-jolt -M:input-gestures             # from the repo root
+cd input-gestures && bb run   # from this demo (or jolt run, jolt -M:run)
+bb input-gestures             # from the repo root (or jolt -M:input-gestures)
 ```
 
 ## About

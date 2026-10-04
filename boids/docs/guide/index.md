@@ -10,8 +10,8 @@ Category: generative
 ## Run it
 
 ```sh
-cd boids && jolt -M:run   # from this demo
-jolt -M:boids             # from the repo root
+cd boids && bb run   # from this demo (or jolt run, jolt -M:run)
+bb boids             # from the repo root (or jolt -M:boids)
 ```
 
 ## About

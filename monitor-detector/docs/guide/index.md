@@ -10,8 +10,8 @@ Category: core
 ## Run it
 
 ```sh
-cd monitor-detector && jolt -M:run   # from this demo
-jolt -M:monitor-detector             # from the repo root
+cd monitor-detector && bb run   # from this demo (or jolt run, jolt -M:run)
+bb monitor-detector             # from the repo root (or jolt -M:monitor-detector)
 ```
 
 ## About

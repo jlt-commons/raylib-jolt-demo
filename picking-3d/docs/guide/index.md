@@ -10,8 +10,8 @@ Category: 3d
 ## Run it
 
 ```sh
-cd picking-3d && jolt -M:run   # from this demo
-jolt -M:picking-3d             # from the repo root
+cd picking-3d && bb run   # from this demo (or jolt run, jolt -M:run)
+bb picking-3d             # from the repo root (or jolt -M:picking-3d)
 ```
 
 ## About

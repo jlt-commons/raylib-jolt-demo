@@ -10,8 +10,8 @@ Category: shaders
 ## Run it
 
 ```sh
-cd texture-rendering && jolt -M:run   # from this demo
-jolt -M:texture-rendering             # from the repo root
+cd texture-rendering && bb run   # from this demo (or jolt run, jolt -M:run)
+bb texture-rendering             # from the repo root (or jolt -M:texture-rendering)
 ```
 
 ## About

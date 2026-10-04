@@ -10,8 +10,8 @@ Category: shapes
 ## Run it
 
 ```sh
-cd rectangle-scaling && jolt -M:run   # from this demo
-jolt -M:rectangle-scaling             # from the repo root
+cd rectangle-scaling && bb run   # from this demo (or jolt run, jolt -M:run)
+bb rectangle-scaling             # from the repo root (or jolt -M:rectangle-scaling)
 ```
 
 ## About

@@ -10,8 +10,8 @@ Category: shapes
 ## Run it
 
 ```sh
-cd kaleidoscope && jolt -M:run   # from this demo
-jolt -M:kaleidoscope             # from the repo root
+cd kaleidoscope && bb run   # from this demo (or jolt run, jolt -M:run)
+bb kaleidoscope             # from the repo root (or jolt -M:kaleidoscope)
 ```
 
 ## About

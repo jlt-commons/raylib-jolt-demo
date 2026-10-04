@@ -10,8 +10,8 @@ Category: games
 ## Run it
 
 ```sh
-cd breakout && jolt -M:run   # from this demo
-jolt -M:breakout             # from the repo root
+cd breakout && bb run   # from this demo (or jolt run, jolt -M:run)
+bb breakout             # from the repo root (or jolt -M:breakout)
 ```
 
 ## About

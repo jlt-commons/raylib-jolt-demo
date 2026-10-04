@@ -10,8 +10,8 @@ Category: shapes
 ## Run it
 
 ```sh
-cd pie-chart && jolt -M:run   # from this demo
-jolt -M:pie-chart             # from the repo root
+cd pie-chart && bb run   # from this demo (or jolt run, jolt -M:run)
+bb pie-chart             # from the repo root (or jolt -M:pie-chart)
 ```
 
 ## About

@@ -10,8 +10,8 @@ Category: text
 ## Run it
 
 ```sh
-cd rectangle-bounds && jolt -M:run   # from this demo
-jolt -M:rectangle-bounds             # from the repo root
+cd rectangle-bounds && bb run   # from this demo (or jolt run, jolt -M:run)
+bb rectangle-bounds             # from the repo root (or jolt -M:rectangle-bounds)
 ```
 
 ## About

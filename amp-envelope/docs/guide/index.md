@@ -10,8 +10,8 @@ Category: audio
 ## Run it
 
 ```sh
-cd amp-envelope && jolt -M:run   # from this demo
-jolt -M:amp-envelope             # from the repo root
+cd amp-envelope && bb run   # from this demo (or jolt run, jolt -M:run)
+bb amp-envelope             # from the repo root (or jolt -M:amp-envelope)
 ```
 
 ## About

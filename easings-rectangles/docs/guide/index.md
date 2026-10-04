@@ -10,8 +10,8 @@ Category: shapes
 ## Run it
 
 ```sh
-cd easings-rectangles && jolt -M:run   # from this demo
-jolt -M:easings-rectangles             # from the repo root
+cd easings-rectangles && bb run   # from this demo (or jolt run, jolt -M:run)
+bb easings-rectangles             # from the repo root (or jolt -M:easings-rectangles)
 ```
 
 ## About

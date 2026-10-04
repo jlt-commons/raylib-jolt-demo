@@ -10,8 +10,8 @@ Category: shapes
 ## Run it
 
 ```sh
-cd starfield-effect && jolt -M:run   # from this demo
-jolt -M:starfield-effect             # from the repo root
+cd starfield-effect && bb run   # from this demo (or jolt run, jolt -M:run)
+bb starfield-effect             # from the repo root (or jolt -M:starfield-effect)
 ```
 
 ## About

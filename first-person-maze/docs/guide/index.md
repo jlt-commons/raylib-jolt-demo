@@ -10,8 +10,8 @@ Category: 3d
 ## Run it
 
 ```sh
-cd first-person-maze && jolt -M:run   # from this demo
-jolt -M:first-person-maze             # from the repo root
+cd first-person-maze && bb run   # from this demo (or jolt run, jolt -M:run)
+bb first-person-maze             # from the repo root (or jolt -M:first-person-maze)
 ```
 
 ## About

@@ -10,8 +10,8 @@ Category: 3d
 ## Run it
 
 ```sh
-cd helitorus && jolt -M:run   # from this demo
-jolt -M:helitorus             # from the repo root
+cd helitorus && bb run   # from this demo (or jolt run, jolt -M:run)
+bb helitorus             # from the repo root (or jolt -M:helitorus)
 ```
 
 ## About

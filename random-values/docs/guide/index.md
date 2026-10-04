@@ -10,8 +10,8 @@ Category: core
 ## Run it
 
 ```sh
-cd random-values && jolt -M:run   # from this demo
-jolt -M:random-values             # from the repo root
+cd random-values && bb run   # from this demo (or jolt run, jolt -M:run)
+bb random-values             # from the repo root (or jolt -M:random-values)
 ```
 
 ## About

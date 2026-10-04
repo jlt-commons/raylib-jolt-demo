@@ -10,8 +10,8 @@ Category: shapes
 ## Run it
 
 ```sh
-cd hilbert-curve && jolt -M:run   # from this demo
-jolt -M:hilbert-curve             # from the repo root
+cd hilbert-curve && bb run   # from this demo (or jolt run, jolt -M:run)
+bb hilbert-curve             # from the repo root (or jolt -M:hilbert-curve)
 ```
 
 ## About

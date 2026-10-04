@@ -10,8 +10,8 @@ Category: 3d
 ## Run it
 
 ```sh
-cd mesh-generation && jolt -M:run   # from this demo
-jolt -M:mesh-generation             # from the repo root
+cd mesh-generation && bb run   # from this demo (or jolt run, jolt -M:run)
+bb mesh-generation             # from the repo root (or jolt -M:mesh-generation)
 ```
 
 ## About

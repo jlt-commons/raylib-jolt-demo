@@ -10,8 +10,8 @@ Category: 3d
 ## Run it
 
 ```sh
-cd point-cloud && jolt -M:run   # from this demo
-jolt -M:point-cloud             # from the repo root
+cd point-cloud && bb run   # from this demo (or jolt run, jolt -M:run)
+bb point-cloud             # from the repo root (or jolt -M:point-cloud)
 ```
 
 ## About

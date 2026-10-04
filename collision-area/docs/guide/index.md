@@ -10,8 +10,8 @@ Category: shapes
 ## Run it
 
 ```sh
-cd collision-area && jolt -M:run   # from this demo
-jolt -M:collision-area             # from the repo root
+cd collision-area && bb run   # from this demo (or jolt run, jolt -M:run)
+bb collision-area             # from the repo root (or jolt -M:collision-area)
 ```
 
 ## About

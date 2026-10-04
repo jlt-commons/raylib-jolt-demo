@@ -10,8 +10,8 @@ Category: textures
 ## Run it
 
 ```sh
-cd fog-of-war && jolt -M:run   # from this demo
-jolt -M:fog-of-war             # from the repo root
+cd fog-of-war && bb run   # from this demo (or jolt run, jolt -M:run)
+bb fog-of-war             # from the repo root (or jolt -M:fog-of-war)
 ```
 
 ## About

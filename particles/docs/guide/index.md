@@ -10,8 +10,8 @@ Category: generative
 ## Run it
 
 ```sh
-cd particles && jolt -M:run   # from this demo
-jolt -M:particles             # from the repo root
+cd particles && bb run   # from this demo (or jolt run, jolt -M:run)
+bb particles             # from the repo root (or jolt -M:particles)
 ```
 
 ## About

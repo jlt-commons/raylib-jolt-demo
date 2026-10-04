@@ -10,8 +10,8 @@ Category: textures
 ## Run it
 
 ```sh
-cd sprite-stacking && jolt -M:run   # from this demo
-jolt -M:sprite-stacking             # from the repo root
+cd sprite-stacking && bb run   # from this demo (or jolt run, jolt -M:run)
+bb sprite-stacking             # from the repo root (or jolt -M:sprite-stacking)
 ```
 
 ## About

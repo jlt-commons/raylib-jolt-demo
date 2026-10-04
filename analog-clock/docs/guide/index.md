@@ -10,8 +10,8 @@ Category: shapes
 ## Run it
 
 ```sh
-cd analog-clock && jolt -M:run   # from this demo
-jolt -M:analog-clock             # from the repo root
+cd analog-clock && bb run   # from this demo (or jolt run, jolt -M:run)
+bb analog-clock             # from the repo root (or jolt -M:analog-clock)
 ```
 
 ## About

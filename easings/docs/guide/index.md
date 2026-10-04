@@ -10,8 +10,8 @@ Category: shapes
 ## Run it
 
 ```sh
-cd easings && jolt -M:run   # from this demo
-jolt -M:easings             # from the repo root
+cd easings && bb run   # from this demo (or jolt run, jolt -M:run)
+bb easings             # from the repo root (or jolt -M:easings)
 ```
 
 ## About

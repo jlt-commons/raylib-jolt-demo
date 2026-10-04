@@ -10,8 +10,8 @@ Category: shaders
 ## Run it
 
 ```sh
-cd mesh-instancing && jolt -M:run   # from this demo
-jolt -M:mesh-instancing             # from the repo root
+cd mesh-instancing && bb run   # from this demo (or jolt run, jolt -M:run)
+bb mesh-instancing             # from the repo root (or jolt -M:mesh-instancing)
 ```
 
 ## About

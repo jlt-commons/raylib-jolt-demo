@@ -10,8 +10,8 @@ Category: audio
 ## Run it
 
 ```sh
-cd audio-raw-stream && jolt -M:run   # from this demo
-jolt -M:audio-raw-stream             # from the repo root
+cd audio-raw-stream && bb run   # from this demo (or jolt run, jolt -M:run)
+bb audio-raw-stream             # from the repo root (or jolt -M:audio-raw-stream)
 ```
 
 ## About

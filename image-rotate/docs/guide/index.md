@@ -10,8 +10,8 @@ Category: textures
 ## Run it
 
 ```sh
-cd image-rotate && jolt -M:run   # from this demo
-jolt -M:image-rotate             # from the repo root
+cd image-rotate && bb run   # from this demo (or jolt run, jolt -M:run)
+bb image-rotate             # from the repo root (or jolt -M:image-rotate)
 ```
 
 ## About

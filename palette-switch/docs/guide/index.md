@@ -10,8 +10,8 @@ Category: shaders
 ## Run it
 
 ```sh
-cd palette-switch && jolt -M:run   # from this demo
-jolt -M:palette-switch             # from the repo root
+cd palette-switch && bb run   # from this demo (or jolt run, jolt -M:run)
+bb palette-switch             # from the repo root (or jolt -M:palette-switch)
 ```
 
 ## About

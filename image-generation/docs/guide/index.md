@@ -10,8 +10,8 @@ Category: textures
 ## Run it
 
 ```sh
-cd image-generation && jolt -M:run   # from this demo
-jolt -M:image-generation             # from the repo root
+cd image-generation && bb run   # from this demo (or jolt run, jolt -M:run)
+bb image-generation             # from the repo root (or jolt -M:image-generation)
 ```
 
 ## About

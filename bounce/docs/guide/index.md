@@ -10,8 +10,8 @@ Category: shapes
 ## Run it
 
 ```sh
-cd bounce && jolt -M:run   # from this demo
-jolt -M:bounce             # from the repo root
+cd bounce && bb run   # from this demo (or jolt run, jolt -M:run)
+bb bounce             # from the repo root (or jolt -M:bounce)
 ```
 
 ## About

@@ -10,8 +10,8 @@ Category: shapes
 ## Run it
 
 ```sh
-cd logo && jolt -M:run   # from this demo
-jolt -M:logo             # from the repo root
+cd logo && bb run   # from this demo (or jolt run, jolt -M:run)
+bb logo             # from the repo root (or jolt -M:logo)
 ```
 
 ## About

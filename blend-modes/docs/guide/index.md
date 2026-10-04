@@ -10,8 +10,8 @@ Category: textures
 ## Run it
 
 ```sh
-cd blend-modes && jolt -M:run   # from this demo
-jolt -M:blend-modes             # from the repo root
+cd blend-modes && bb run   # from this demo (or jolt run, jolt -M:run)
+bb blend-modes             # from the repo root (or jolt -M:blend-modes)
 ```
 
 ## About

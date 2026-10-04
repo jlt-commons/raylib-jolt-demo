@@ -10,8 +10,8 @@ Category: shaders
 ## Run it
 
 ```sh
-cd multi-sampler && jolt -M:run   # from this demo
-jolt -M:multi-sampler             # from the repo root
+cd multi-sampler && bb run   # from this demo (or jolt run, jolt -M:run)
+bb multi-sampler             # from the repo root (or jolt -M:multi-sampler)
 ```
 
 ## About

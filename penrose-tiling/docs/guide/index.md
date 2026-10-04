@@ -10,8 +10,8 @@ Category: shapes
 ## Run it
 
 ```sh
-cd penrose-tiling && jolt -M:run   # from this demo
-jolt -M:penrose-tiling             # from the repo root
+cd penrose-tiling && bb run   # from this demo (or jolt run, jolt -M:run)
+bb penrose-tiling             # from the repo root (or jolt -M:penrose-tiling)
 ```
 
 ## About

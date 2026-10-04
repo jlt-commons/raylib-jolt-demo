@@ -10,8 +10,8 @@ Category: textures
 ## Run it
 
 ```sh
-cd srcrec-dstrec && jolt -M:run   # from this demo
-jolt -M:srcrec-dstrec             # from the repo root
+cd srcrec-dstrec && bb run   # from this demo (or jolt run, jolt -M:run)
+bb srcrec-dstrec             # from the repo root (or jolt -M:srcrec-dstrec)
 ```
 
 ## About

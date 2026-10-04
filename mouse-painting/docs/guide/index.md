@@ -10,8 +10,8 @@ Category: textures
 ## Run it
 
 ```sh
-cd mouse-painting && jolt -M:run   # from this demo
-jolt -M:mouse-painting             # from the repo root
+cd mouse-painting && bb run   # from this demo (or jolt run, jolt -M:run)
+bb mouse-painting             # from the repo root (or jolt -M:mouse-painting)
 ```
 
 ## About

@@ -10,8 +10,8 @@ Category: generative
 ## Run it
 
 ```sh
-cd cellular-automata && jolt -M:run   # from this demo
-jolt -M:cellular-automata             # from the repo root
+cd cellular-automata && bb run   # from this demo (or jolt run, jolt -M:run)
+bb cellular-automata             # from the repo root (or jolt -M:cellular-automata)
 ```
 
 ## About

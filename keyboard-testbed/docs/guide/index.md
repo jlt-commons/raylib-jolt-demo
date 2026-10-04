@@ -10,8 +10,8 @@ Category: core
 ## Run it
 
 ```sh
-cd keyboard-testbed && jolt -M:run   # from this demo
-jolt -M:keyboard-testbed             # from the repo root
+cd keyboard-testbed && bb run   # from this demo (or jolt run, jolt -M:run)
+bb keyboard-testbed             # from the repo root (or jolt -M:keyboard-testbed)
 ```
 
 ## About

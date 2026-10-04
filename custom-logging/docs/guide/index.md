@@ -10,8 +10,8 @@ Category: core
 ## Run it
 
 ```sh
-cd custom-logging && jolt -M:run   # from this demo
-jolt -M:custom-logging             # from the repo root
+cd custom-logging && bb run   # from this demo (or jolt run, jolt -M:run)
+bb custom-logging             # from the repo root (or jolt -M:custom-logging)
 ```
 
 ## About

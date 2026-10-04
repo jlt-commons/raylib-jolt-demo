@@ -10,8 +10,8 @@ Category: 3d
 ## Run it
 
 ```sh
-cd rotating-cube && jolt -M:run   # from this demo
-jolt -M:rotating-cube             # from the repo root
+cd rotating-cube && bb run   # from this demo (or jolt run, jolt -M:run)
+bb rotating-cube             # from the repo root (or jolt -M:rotating-cube)
 ```
 
 ## About

@@ -10,8 +10,8 @@ Category: shaders
 ## Run it
 
 ```sh
-cd raymarching && jolt -M:run   # from this demo
-jolt -M:raymarching             # from the repo root
+cd raymarching && bb run   # from this demo (or jolt run, jolt -M:run)
+bb raymarching             # from the repo root (or jolt -M:raymarching)
 ```
 
 ## About

@@ -10,8 +10,8 @@ Category: 3d
 ## Run it
 
 ```sh
-cd camera-3d-split-screen && jolt -M:run   # from this demo
-jolt -M:camera-3d-split-screen             # from the repo root
+cd camera-3d-split-screen && bb run   # from this demo (or jolt run, jolt -M:run)
+bb camera-3d-split-screen             # from the repo root (or jolt -M:camera-3d-split-screen)
 ```
 
 ## About

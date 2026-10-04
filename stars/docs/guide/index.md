@@ -10,8 +10,8 @@ Category: shapes
 ## Run it
 
 ```sh
-cd stars && jolt -M:run   # from this demo
-jolt -M:stars             # from the repo root
+cd stars && bb run   # from this demo (or jolt run, jolt -M:run)
+bb stars             # from the repo root (or jolt -M:stars)
 ```
 
 ## About

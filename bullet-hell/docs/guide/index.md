@@ -10,8 +10,8 @@ Category: shapes
 ## Run it
 
 ```sh
-cd bullet-hell && jolt -M:run   # from this demo
-jolt -M:bullet-hell             # from the repo root
+cd bullet-hell && bb run   # from this demo (or jolt run, jolt -M:run)
+bb bullet-hell             # from the repo root (or jolt -M:bullet-hell)
 ```
 
 ## About

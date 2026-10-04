@@ -10,8 +10,8 @@ Category: audio
 ## Run it
 
 ```sh
-cd audio-stream-callback && jolt -M:run   # from this demo
-jolt -M:audio-stream-callback             # from the repo root
+cd audio-stream-callback && bb run   # from this demo (or jolt run, jolt -M:run)
+bb audio-stream-callback             # from the repo root (or jolt -M:audio-stream-callback)
 ```
 
 ## About

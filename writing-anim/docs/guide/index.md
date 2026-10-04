@@ -10,8 +10,8 @@ Category: text
 ## Run it
 
 ```sh
-cd writing-anim && jolt -M:run   # from this demo
-jolt -M:writing-anim             # from the repo root
+cd writing-anim && bb run   # from this demo (or jolt run, jolt -M:run)
+bb writing-anim             # from the repo root (or jolt -M:writing-anim)
 ```
 
 ## About

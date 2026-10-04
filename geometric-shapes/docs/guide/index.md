@@ -10,8 +10,8 @@ Category: 3d
 ## Run it
 
 ```sh
-cd geometric-shapes && jolt -M:run   # from this demo
-jolt -M:geometric-shapes             # from the repo root
+cd geometric-shapes && bb run   # from this demo (or jolt run, jolt -M:run)
+bb geometric-shapes             # from the repo root (or jolt -M:geometric-shapes)
 ```
 
 ## About

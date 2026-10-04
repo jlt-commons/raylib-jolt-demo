@@ -10,8 +10,8 @@ Category: shapes
 ## Run it
 
 ```sh
-cd recursive-tree && jolt -M:run   # from this demo
-jolt -M:recursive-tree             # from the repo root
+cd recursive-tree && bb run   # from this demo (or jolt run, jolt -M:run)
+bb recursive-tree             # from the repo root (or jolt -M:recursive-tree)
 ```
 
 ## About

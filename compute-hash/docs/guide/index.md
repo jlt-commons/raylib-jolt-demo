@@ -10,8 +10,8 @@ Category: core
 ## Run it
 
 ```sh
-cd compute-hash && jolt -M:run   # from this demo
-jolt -M:compute-hash             # from the repo root
+cd compute-hash && bb run   # from this demo (or jolt run, jolt -M:run)
+bb compute-hash             # from the repo root (or jolt -M:compute-hash)
 ```
 
 ## About

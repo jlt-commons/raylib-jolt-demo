@@ -10,8 +10,8 @@ Category: core
 ## Run it
 
 ```sh
-cd scissor-test && jolt -M:run   # from this demo
-jolt -M:scissor-test             # from the repo root
+cd scissor-test && bb run   # from this demo (or jolt run, jolt -M:run)
+bb scissor-test             # from the repo root (or jolt -M:scissor-test)
 ```
 
 ## About
