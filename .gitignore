@@ -18,3 +18,6 @@ _site/
 
 # clj-kondo analysis cache (the config and hook next to it are tracked)
 .clj-kondo/.cache/
+
+# Clojure CLI classpath cache (created when a tool resolves a deps.edn with the clojure CLI)
+.cpcache/
