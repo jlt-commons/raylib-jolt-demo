@@ -21,3 +21,6 @@ _site/
 
 # Clojure CLI classpath cache (created when a tool resolves a deps.edn with the clojure CLI)
 .cpcache/
+
+# screen-grab teardown markers (out-dir scratch; recover-pending! executes these)
+docs/demos/.screen-grab-pending.edn*

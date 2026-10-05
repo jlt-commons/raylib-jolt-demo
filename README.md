@@ -33,6 +33,8 @@ docs/                         the site: site.edn, guide/index.md, the generated
                               recording in demos/, since docs-engine only
                               publishes assets from under docs/
 scripts/gen.clj               rebuilds the files that list every demo
+scripts/demo_manifest.edn     screen-grab manifest for `bb record`
+scripts/sync_recordings.clj   copies docs/demos/ recordings into each demo
 .clj-kondo/                   lint config, and the hook that reads jolt.ffi/defcfn
 .github/workflows/            ci.yml (doctor, gen --check, lint, compile), site.yml (Pages)
 ```
@@ -94,10 +96,35 @@ raylib-jlt commit you want, then run `bb check` and `bb run-all 1`.
 CI runs `bb gen --check`, which fails when a demo directory and `demos.edn`
 disagree or when step 4 was skipped.
 
+## Recording the GIFs
+
+Every recording is committed, so you never need to make one. Regenerating them
+is a maintainer task: `bb record` drives every demo through
+[screen-grab](https://github.com/burinc/b12n-screen-grab), an internal capture
+tool that isn't publicly released, and says so if it's missing.
+
+```sh
+bb record --dry-run          # what would be captured, and why
+bb record --only asteroids   # one demo (ids are demo names)
+bb record                    # everything not already up to date
+```
+
+The manifest is `scripts/demo_manifest.edn`. It lists every demo through
+`bb demos:examples`, and holds the per-demo `:input` timelines and durations.
+screen-grab writes into `docs/demos/` and keeps `docs/demos/ledger.edn`, keyed by
+each source file's content, so unchanged demos are skipped. After it finishes,
+`bb record` runs `bb sync-recordings`, which copies each new recording into
+`<demo>/docs/demos/` and swaps a still `.png` for its new `.gif`, and then
+`bb gen`, which refreshes the gallery. CI runs `bb sync-recordings --check`.
+
+A take steals the screen while it runs, so leave the machine alone. Synthetic
+input reaches very few raylib windows (the manifest's comments say which), so
+a demo that only moves when you drive it records as a still frame.
+
 ## CI and the site
 
-`ci.yml` runs `bb doctor`, `bb gen --check`, `bb lint:strict` and `bb check`
-on every push and pull request. `site.yml` builds the docs with
+`ci.yml` runs `bb doctor`, `bb gen --check`, `bb sync-recordings --check`,
+`bb lint:strict` and `bb check` on every push and pull request. `site.yml` builds the docs with
 [docs-engine](https://github.com/jlt-commons/docs-engine) through the shared
 workflow in jlt-commons/ci-builds, runs `docs/check-site.sh` against the
 result, and deploys to GitHub Pages from main. To build it locally with a

@@ -87,6 +87,11 @@ jobs:
             exit 1
           }
 
+      # Each recording lives twice, docs/demos/ for the site and
+      # <demo>/docs/demos/ for the demo. This fails when they disagree.
+      - name: Recordings agree
+        run: bb sync-recordings --check
+
       - name: clj-kondo
         run: bb lint:strict
 

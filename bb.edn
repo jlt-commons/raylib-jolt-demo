@@ -12,6 +12,8 @@
 ;;   bb lint [--strict]    clj-kondo over every demo and common/ (lint:strict fails on findings)
 ;;   bb doctor             is jolt there, does raylib-jlt resolve, is libraylib installed?
 ;;   bb gen [--check]      rebuild deps.edn, check.clj, these tasks and the gallery
+;;   bb record [opts]      record demo GIFs with screen-grab (maintainer-only), then sync
+;;   bb sync-recordings    copy docs/demos/ recordings into each demo's own docs/demos/
 ;;
 ;; Demos run through the root deps.edn alias, from this directory, exactly as
 ;; `jolt -M:<alias>` does. The demo list is demos.edn, edited by hand, and the
@@ -84,6 +86,8 @@
      (row "lint" "clj-kondo over every demo (report only); lint:strict fails on findings")
      (hdr "Maintenance")
      (row "gen [--check]" "rebuild deps.edn, check.clj, demo tasks and gallery from demos.edn")
+     (row "record [--only a,b] [--force]" "record demo GIFs with screen-grab (maintainer-only)")
+     (row "sync-recordings [--check]" "copy docs/demos/ recordings into each demo's docs/demos/")
      (doseq [[category ds] (sort-by key (group-by :category demos))]
        (hdr (str (or category "local") " (" (count ds) ")"))
        (doseq [d ds] (row (:name d) (or (:desc d) ""))))
@@ -149,6 +153,41 @@
            (doseq [[what ok fix] checks]
              (println (str (if ok "  ok    " "  MISSING ") what (when-not ok (str "  -> " fix)))))
            (when-not (every? second checks) (System/exit 1)))}
+
+  demos:examples
+  {:doc "Print every demo as EDN for screen-grab's :examples-cmd"
+   :task (prn (vec (for [d demos
+                         :let [n (:name d)]]
+                     {:id n
+                      :group (:category d)
+                      :desc (:desc d)
+                      :src (str n "/src/net/b12n/raylib_jlt/" (str/replace n "-" "_") ".clj")
+                      :run (str jolt-cmd " -M:" (:alias d))})))}
+
+  record
+  {:doc "Record demo GIFs into docs/demos/ (screen-grab), then sync each demo's copy and the gallery"
+   :task (if-not (fs/which "screen-grab")
+           (binding [*out* *err*]
+             (println "bb record needs the `screen-grab` capture CLI on your PATH.")
+             (println "That tool is internal and not publicly released yet, so this task is")
+             (println "maintainer-only. Every recording is committed, so you never need it to")
+             (println "view the demos.")
+             (System/exit 1))
+           (let [{:keys [exit]} (apply shell {:continue true}
+                                       "screen-grab" "record"
+                                       "--manifest" "scripts/demo_manifest.edn"
+                                       *command-line-args*)]
+             ;; Sync even after a partial failure: the items that did record
+             ;; should reach their demo's folder and the gallery.
+             (when-not (some #{"--dry-run" "--list"} *command-line-args*)
+               (shell "bb" "sync-recordings")
+               (shell "bb" "gen"))
+             (when-not (zero? exit) (System/exit exit))))}
+
+  sync-recordings
+  {:doc "Copy docs/demos/ recordings into each demo's own docs/demos/: sync-recordings [--check]"
+   :requires ([sync-recordings])
+   :task (apply sync-recordings/-main *command-line-args*)}
 
   gen
   {:doc "Rebuild deps.edn, check.clj, demo tasks and gallery from demos.edn: gen [--check]"
