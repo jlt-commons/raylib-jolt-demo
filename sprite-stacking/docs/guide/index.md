@@ -4,7 +4,7 @@
 
 Category: textures
 
-![sprite-stacking](../demos/sprite-stacking.png)
+![sprite-stacking](../demos/sprite-stacking.gif)
 
 ## Run it
 

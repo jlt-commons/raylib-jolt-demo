@@ -4,7 +4,7 @@ a round lens that reveals hidden markers
 
 Category: textures
 
-![magnifying-glass](../demos/magnifying-glass.png)
+![magnifying-glass](../demos/magnifying-glass.gif)
 
 ## Run it
 

@@ -4,7 +4,7 @@ eight GenMesh shapes, drawn with DrawMesh
 
 Category: 3d
 
-![mesh-generation](../demos/mesh-generation.png)
+![mesh-generation](../demos/mesh-generation.gif)
 
 ## Run it
 

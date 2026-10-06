@@ -4,7 +4,7 @@ one image, VRAM to RAM to VRAM and back up
 
 Category: textures
 
-![to-image](../demos/to-image.png)
+![to-image](../demos/to-image.gif)
 
 ## Run it
 

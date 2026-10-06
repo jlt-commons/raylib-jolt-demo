@@ -4,7 +4,7 @@
 
 Category: shaders
 
-![mesh-instancing](../demos/mesh-instancing.png)
+![mesh-instancing](../demos/mesh-instancing.gif)
 
 ## Run it
 

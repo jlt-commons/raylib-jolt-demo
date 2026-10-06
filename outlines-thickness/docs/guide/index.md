@@ -4,7 +4,7 @@ thick outlines, and what a negative one does
 
 Category: shapes
 
-![outlines-thickness](../demos/outlines-thickness.png)
+![outlines-thickness](../demos/outlines-thickness.gif)
 
 ## Run it
 

@@ -4,7 +4,7 @@ shapes baked once, then drawn live each frame
 
 Category: textures
 
-![image-drawing](../demos/image-drawing.png)
+![image-drawing](../demos/image-drawing.gif)
 
 ## Run it
 

@@ -4,7 +4,7 @@ textures built from a hand-filled byte buffer
 
 Category: textures
 
-![raw-data](../demos/raw-data.png)
+![raw-data](../demos/raw-data.gif)
 
 ## Run it
 

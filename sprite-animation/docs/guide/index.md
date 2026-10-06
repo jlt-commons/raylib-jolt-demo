@@ -4,7 +4,7 @@ six generated poses, one source rectangle
 
 Category: textures
 
-![sprite-animation](../demos/sprite-animation.png)
+![sprite-animation](../demos/sprite-animation.gif)
 
 ## Run it
 

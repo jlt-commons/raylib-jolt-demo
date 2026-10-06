@@ -4,7 +4,7 @@ a flat plane made terrain in the vertex stage
 
 Category: shaders
 
-![vertex-displacement](../demos/vertex-displacement.png)
+![vertex-displacement](../demos/vertex-displacement.gif)
 
 ## Run it
 

@@ -4,7 +4,7 @@ R/G/B/A split; alpha masked to show structure
 
 Category: textures
 
-![image-channel](../demos/image-channel.png)
+![image-channel](../demos/image-channel.gif)
 
 ## Run it
 

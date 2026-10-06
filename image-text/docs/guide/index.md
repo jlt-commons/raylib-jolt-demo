@@ -4,7 +4,7 @@ text baked into the image, pixelates at 4x
 
 Category: textures
 
-![image-text](../demos/image-text.png)
+![image-text](../demos/image-text.gif)
 
 ## Run it
 

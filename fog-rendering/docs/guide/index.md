@@ -4,7 +4,7 @@ exponential distance fog in the light shader
 
 Category: shaders
 
-![fog-rendering](../demos/fog-rendering.png)
+![fog-rendering](../demos/fog-rendering.gif)
 
 ## Run it
 

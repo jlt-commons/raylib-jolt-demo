@@ -4,7 +4,7 @@ four point lights, custom vertex shader
 
 Category: shaders
 
-![basic-lighting](../demos/basic-lighting.png)
+![basic-lighting](../demos/basic-lighting.gif)
 
 ## Run it
 

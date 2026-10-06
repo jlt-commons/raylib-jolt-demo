@@ -4,7 +4,7 @@ a texture laid along a cubic Bezier
 
 Category: textures
 
-![textured-curve](../demos/textured-curve.png)
+![textured-curve](../demos/textured-curve.gif)
 
 ## Run it
 

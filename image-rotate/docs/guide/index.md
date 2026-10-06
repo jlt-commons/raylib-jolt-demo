@@ -4,7 +4,7 @@
 
 Category: textures
 
-![image-rotate](../demos/image-rotate.png)
+![image-rotate](../demos/image-rotate.gif)
 
 ## Run it
 

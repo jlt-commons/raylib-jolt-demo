@@ -100,7 +100,7 @@ the Lorenz attractor traced in 3D. Run it with `bb lorenz-attractor`.
 
 eight GenMesh shapes, drawn with DrawMesh. Run it with `bb mesh-generation`.
 
-![mesh-generation](../demos/mesh-generation.png)
+![mesh-generation](../demos/mesh-generation.gif)
 
 ### [orthographic-projection](https://github.com/jlt-commons/raylib-jolt-demo/tree/main/orthographic-projection)
 
@@ -542,7 +542,7 @@ ascii art from a post-process shader. Run it with `bb ascii-rendering`.
 
 four point lights, custom vertex shader. Run it with `bb basic-lighting`.
 
-![basic-lighting](../demos/basic-lighting.png)
+![basic-lighting](../demos/basic-lighting.gif)
 
 ### [color-correction](https://github.com/jlt-commons/raylib-jolt-demo/tree/main/color-correction)
 
@@ -566,7 +566,7 @@ the Sieve of Eratosthenes, one test per pixel. Run it with `bb eratosthenes-siev
 
 exponential distance fog in the light shader. Run it with `bb fog-rendering`.
 
-![fog-rendering](../demos/fog-rendering.png)
+![fog-rendering](../demos/fog-rendering.gif)
 
 ### [julia-set](https://github.com/jlt-commons/raylib-jolt-demo/tree/main/julia-set)
 
@@ -584,7 +584,7 @@ the Mandelbrot set, zoomable, in a shader. Run it with `bb mandelbrot-set`.
 
 10000 lit cubes in one draw call. Run it with `bb mesh-instancing`.
 
-![mesh-instancing](../demos/mesh-instancing.png)
+![mesh-instancing](../demos/mesh-instancing.gif)
 
 ### [multi-sampler](https://github.com/jlt-commons/raylib-jolt-demo/tree/main/multi-sampler)
 
@@ -650,7 +650,7 @@ a starfield rippled by a UV-displacement shader. Run it with `bb texture-waves`.
 
 a flat plane made terrain in the vertex stage. Run it with `bb vertex-displacement`.
 
-![vertex-displacement](../demos/vertex-displacement.png)
+![vertex-displacement](../demos/vertex-displacement.gif)
 
 ## shapes (45)
 
@@ -826,7 +826,7 @@ a fading trail follows the cursor. Run it with `bb mouse-trail`.
 
 thick outlines, and what a negative one does. Run it with `bb outlines-thickness`.
 
-![outlines-thickness](../demos/outlines-thickness.png)
+![outlines-thickness](../demos/outlines-thickness.gif)
 
 ### [penrose-tiling](https://github.com/jlt-commons/raylib-jolt-demo/tree/main/penrose-tiling)
 
@@ -1010,13 +1010,13 @@ two cameras, two framebuffers, one scene. Run it with `bb framebuffer-rendering`
 
 R/G/B/A split; alpha masked to show structure. Run it with `bb image-channel`.
 
-![image-channel](../demos/image-channel.png)
+![image-channel](../demos/image-channel.gif)
 
 ### [image-drawing](https://github.com/jlt-commons/raylib-jolt-demo/tree/main/image-drawing)
 
 shapes baked once, then drawn live each frame. Run it with `bb image-drawing`.
 
-![image-drawing](../demos/image-drawing.png)
+![image-drawing](../demos/image-drawing.gif)
 
 ### [image-generation](https://github.com/jlt-commons/raylib-jolt-demo/tree/main/image-generation)
 
@@ -1040,19 +1040,19 @@ nine CPU-side image operations, picked live. Run it with `bb image-processing`.
 
 0/90/180/270 exact, one angle grows the buffer. Run it with `bb image-rotate`.
 
-![image-rotate](../demos/image-rotate.png)
+![image-rotate](../demos/image-rotate.gif)
 
 ### [image-text](https://github.com/jlt-commons/raylib-jolt-demo/tree/main/image-text)
 
 text baked into the image, pixelates at 4x. Run it with `bb image-text`.
 
-![image-text](../demos/image-text.png)
+![image-text](../demos/image-text.gif)
 
 ### [magnifying-glass](https://github.com/jlt-commons/raylib-jolt-demo/tree/main/magnifying-glass)
 
 a round lens that reveals hidden markers. Run it with `bb magnifying-glass`.
 
-![magnifying-glass](../demos/magnifying-glass.png)
+![magnifying-glass](../demos/magnifying-glass.gif)
 
 ### [mouse-painting](https://github.com/jlt-commons/raylib-jolt-demo/tree/main/mouse-painting)
 
@@ -1082,7 +1082,7 @@ hue-wheel texture on a spinning polygon. Run it with `bb polygon-drawing`.
 
 textures built from a hand-filled byte buffer. Run it with `bb raw-data`.
 
-![raw-data](../demos/raw-data.png)
+![raw-data](../demos/raw-data.gif)
 
 ### [render-texture](https://github.com/jlt-commons/raylib-jolt-demo/tree/main/render-texture)
 
@@ -1100,7 +1100,7 @@ the classic DOS fire effect. Run it with `bb screen-buffer`.
 
 six generated poses, one source rectangle. Run it with `bb sprite-animation`.
 
-![sprite-animation](../demos/sprite-animation.png)
+![sprite-animation](../demos/sprite-animation.gif)
 
 ### [sprite-button](https://github.com/jlt-commons/raylib-jolt-demo/tree/main/sprite-button)
 
@@ -1112,7 +1112,7 @@ one sheet, three states, sliced by v. Run it with `bb sprite-button`.
 
 40 generated slices faking a 3D car. Run it with `bb sprite-stacking`.
 
-![sprite-stacking](../demos/sprite-stacking.png)
+![sprite-stacking](../demos/sprite-stacking.gif)
 
 ### [srcrec-dstrec](https://github.com/jlt-commons/raylib-jolt-demo/tree/main/srcrec-dstrec)
 
@@ -1136,10 +1136,10 @@ one tile repeated across the window. Run it with `bb texture-tiling`.
 
 a texture laid along a cubic Bezier. Run it with `bb textured-curve`.
 
-![textured-curve](../demos/textured-curve.png)
+![textured-curve](../demos/textured-curve.gif)
 
 ### [to-image](https://github.com/jlt-commons/raylib-jolt-demo/tree/main/to-image)
 
 one image, VRAM to RAM to VRAM and back up. Run it with `bb to-image`.
 
-![to-image](../demos/to-image.png)
+![to-image](../demos/to-image.gif)
