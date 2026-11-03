@@ -36,7 +36,10 @@
           {:key "audio"
            :title "audio"}]
 
- :defaults {:duration 6
+ ;; :window-inset 28: --window counts from the title bar, and the coordinates
+ ;; below are the app's own content coordinates (screen-grab README).
+ :defaults {:window-inset 28
+            :duration 6
             :fps 10
             :width 480
             :warmup 10}
@@ -54,11 +57,10 @@
   "game-2048"               {:input [[1.0 :key "left"] [2.0 :key "up"] [3.0 :key "right"] [4.0 :key "down"]]}
   ;; 16x12 grid of 30px cells from content y 40. cell-at reads the pointer on
   ;; the press, so :move first or it sees a stale position and misses the grid.
-  ;; y is content y + 28 (frame-relative, screen-grab 4a364cf). Mines are
-  ;; random, so a take can end on BOOM; that is a fair picture of the game too.
-  "minesweeper"             {:input [[0.8 :move 105 143] [1.0 :click 105 143 {:hold 300}]
-                                     [2.0 :move 255 233] [2.2 :click 255 233 {:hold 300}]
-                                     [3.2 :move 375 323] [3.4 :click 375 323 {:hold 300}]]}
+  ;; Mines are random, so a take can end on BOOM; that is a fair picture of the game too.
+  "minesweeper"             {:input [[0.8 :move 105 115] [1.0 :click 105 115 {:hold 300}]
+                                     [2.0 :move 255 205] [2.2 :click 255 205 {:hold 300}]
+                                     [3.2 :move 375 295] [3.4 :click 375 295 {:hold 300}]]}
   "pacman"                  {:input [[1.0 :key "left"] [2.0 :key "up"] [3.0 :key "right"] [4.0 :key "down"]]}
   "doom"                    {:input [[1.0 :key "w"] [2.0 :key "space"] [2.5 :key "right"] [3.5 :key "w"] [4.5 :key "space"]]}
   "helitorus"               {:input [[1.5 :key "right"] [2.5 :key "right"] [3.5 :key "up"] [4.5 :key "left"]]}
