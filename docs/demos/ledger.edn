@@ -18,7 +18,7 @@
   "box-collisions" {:sha "d296da0186f96b0cfdb7f91dcc6794fe7d2d4eff6181f2afdafa89b3b28b6254", :settings [6 10 480 "gif"], :bytes 24828, :at "2026-10-06T01:07:53.340522Z"}
   "breakout" {:sha "99e0424d7eb5beb6dafa3842dfb7c572250a8824a22d8a28315bd93cb19ff123", :settings [6 10 480 "gif"], :bytes 37222, :at "2026-10-06T01:07:53.340523Z"}
   "bullet-hell" {:sha "98fa87a6735f2e0c6584ec2ee001adb5e257f6f8a83331b49559293cdae3c1fc", :settings [6 10 480 "gif"], :bytes 802485, :at "2026-10-06T01:07:53.340524Z"}
-  "bunnymark" {:sha "79f3a9f74aa818325c258b9933909a2098dc83cdd33a9bd0c17d9af09d9cc5a6", :settings [6 10 480 "gif"], :bytes 1980285, :at "2026-10-06T01:07:53.340526Z"}
+  "bunnymark" {:sha "79f3a9f74aa818325c258b9933909a2098dc83cdd33a9bd0c17d9af09d9cc5a6", :settings [6 10 480 "gif"], :bytes 2693204, :at "2026-11-03T08:00:12.997531Z"}
   "camera-2d-mouse-zoom" {:sha "28c9c15d58017d0f0da38b2e12878f687349daef1bd891020e694db94891bebf", :settings [6 10 480 "gif"], :bytes 289761, :at "2026-10-06T01:07:53.340526Z"}
   "camera-2d-platformer" {:sha "87dd562966ed405578e76797b997f0a70fd5113ee45fe3f9b006d0e143d33d53", :settings [10 10 480 "gif"], :bytes 76841, :at "2026-10-06T01:07:53.340527Z"}
   "camera-2d-split-screen" {:sha "d942e69b652f1a3465d17bd8be9482f5d3e9e61b412f55850d3998746c791c09", :settings [8 10 480 "gif"], :bytes 528158, :at "2026-10-06T01:07:53.340528Z"}
