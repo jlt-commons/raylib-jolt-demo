@@ -26,7 +26,7 @@ env:
   # Pinned so a jolt release published overnight can't turn CI red on a tree
   # nobody touched. Bump it in its own commit. A workflow_dispatch run with the
   # jolt-version input tries a candidate without moving the pin.
-  JOLT_VERSION: ${{ inputs.jolt-version || '0.8.17' }}
+  JOLT_VERSION: ${{ inputs.jolt-version || '0.8.24' }}
 
 jobs:
   check:
